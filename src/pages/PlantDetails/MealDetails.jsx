@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+
 import Container from "../../components/Shared/Container";
 import Heading from "../../components/Shared/Heading";
 import Button from "../../components/Shared/Button/Button";
@@ -9,12 +9,14 @@ import PurchaseModal from "../../components/Modal/PurchaseModal";
 import LoadingSpinner from "../../components/Shared/LoadingSpinner";
 import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MealDetails = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const { id } = useParams();
   const [isOpen, setIsOpen] = useState(false);
+  const axiosSecure = useAxiosSecure();
 
   // Redirect if user not logged in
   if (!user) navigate("/login");
@@ -23,12 +25,12 @@ const MealDetails = () => {
   const { data: meal = {}, isLoading } = useQuery({
     queryKey: ["meal", id],
     queryFn: async () => {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/meals/${id}`);
+      const res = await axiosSecure.get(
+        `${import.meta.env.VITE_API_URL}/meals/${id}`
+      );
       return res.data;
     },
   });
-
-  if (isLoading) return <LoadingSpinner />;
 
   const {
     foodName,
@@ -42,12 +44,22 @@ const MealDetails = () => {
     chefName,
     chefId,
   } = meal;
+  const { data: reviews = [], refetch } = useQuery({
+    queryKey: ["reviews", id],
+    queryFn: async () => {
+      const res = await axiosSecure.get(
+        `${import.meta.env.VITE_API_URL}/reviews/${id}`
+      );
+      return res.data;
+    },
+  });
 
+  if (isLoading) return <LoadingSpinner />;
   const closeModal = () => setIsOpen(false);
 
   return (
     <Container>
-      <div className="mx-auto flex flex-col lg:flex-row gap-12 w-full">
+      <div className="mx-auto flex flex-col my-9 lg:flex-row gap-12 w-full">
         {/* Image Section */}
         <div className="flex-1">
           <img
@@ -63,11 +75,15 @@ const MealDetails = () => {
           <p className="text-gray-700 font-semibold">Chef ID: {chefId}</p>
           <p className="text-gray-700 font-medium">Price: ${price}</p>
           <p className="text-gray-700 font-medium">Rating: ⭐ {rating}</p>
-          <p className="text-gray-700 font-medium">Delivery Area: {delivery_area}</p>
+          <p className="text-gray-700 font-medium">
+            Delivery Area: {delivery_area}
+          </p>
           <p className="text-gray-700 font-medium">
             Estimated Delivery: {estimatedDeliveryTime} Min
           </p>
-          <p className="text-gray-700 font-medium">Chef Experience: {chefExperience} Year</p>
+          <p className="text-gray-700 font-medium">
+            Chef Experience: {chefExperience} Year
+          </p>
 
           <hr className="my-4" />
 
@@ -95,9 +111,9 @@ const MealDetails = () => {
           <div>
             <h3 className="font-semibold text-xl mb-4">Reviews:</h3>
             {/* List of reviews */}
-            {meal.reviews?.length ? (
+            {reviews?.length ? (
               <ul className="space-y-3">
-                {meal.reviews.map((rev, idx) => (
+                {reviews.map((rev, idx) => (
                   <li key={idx} className="border p-3 rounded-lg">
                     <p className="font-semibold">{rev.userName}</p>
                     <p>Rating: ⭐ {rev.rating}</p>
@@ -125,11 +141,11 @@ const MealDetails = () => {
 const ReviewForm = ({ mealId }) => {
   const { register, handleSubmit, reset } = useForm();
   const { user } = useAuth();
-
+  const axiosSecure = useAxiosSecure();
   const onSubmit = async (data) => {
     if (!user) return alert("You must be logged in to submit a review.");
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/reviews`, {
+      await axiosSecure.post(`${import.meta.env.VITE_API_URL}/reviews`, {
         mealId,
         userName: user.displayName,
         rating: Number(data.rating),
