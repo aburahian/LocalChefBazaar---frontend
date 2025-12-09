@@ -2,7 +2,7 @@ import Home from '../pages/Home/Home'
 import ErrorPage from '../pages/ErrorPage'
 import Login from '../pages/Login/Login'
 import SignUp from '../pages/SignUp/SignUp'
-import PlantDetails from '../pages/PlantDetails/PlantDetails'
+
 import PrivateRoute from './PrivateRoute'
 import DashboardLayout from '../layouts/DashboardLayout'
 
@@ -22,6 +22,7 @@ import AddMeals from '../pages/Dashboard/chef/AddMeals'
 import MyMeals from '../pages/Dashboard/chef/MyMeals'
 import ChefRoute from './ChefRoute'
 import ChefRequests from '../pages/Dashboard/Admin/ChefRequests'
+import MealDetails from '../pages/PlantDetails/MealDetails'
 
 export const router = createBrowserRouter([
   {
@@ -34,8 +35,8 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/plant/:id',
-        element: <PlantDetails />,
+        path: '/meals/:id',
+        element: <MealDetails />,
       },
       {
         path: '/payment-success',

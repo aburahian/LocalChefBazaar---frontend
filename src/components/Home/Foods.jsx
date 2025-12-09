@@ -5,8 +5,8 @@ import axios from 'axios'
 import LoadingSpinner from '../Shared/LoadingSpinner'
 
 const Foods = () => {
-  const { data: foods = [], isLoading } = useQuery({
-    queryKey: ['foods'],
+  const { data: meals = [], isLoading } = useQuery({
+    queryKey: ['meals'],
     queryFn: async () => {
       const result = await axios(`${import.meta.env.VITE_API_URL}/meals`)
       return result.data
@@ -17,10 +17,10 @@ const Foods = () => {
 
   return (
     <Container>
-      {foods && foods.length > 0 ? (
+      {meals && meals.length > 0 ? (
         <div className='pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8'>
-          {foods.map(food => (
-            <Card key={food._id} plant={food} />
+          {meals.map(meal => (
+            <Card key={meal._id} meal={meal} />
           ))}
         </div>
       ) : null}
