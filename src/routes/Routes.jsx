@@ -1,0 +1,148 @@
+import Home from '../pages/Home/Home'
+import ErrorPage from '../pages/ErrorPage'
+import Login from '../pages/Login/Login'
+import SignUp from '../pages/SignUp/SignUp'
+import PlantDetails from '../pages/PlantDetails/PlantDetails'
+import PrivateRoute from './PrivateRoute'
+import DashboardLayout from '../layouts/DashboardLayout'
+
+import ManageUsers from '../pages/Dashboard/Admin/ManageUsers'
+import Profile from '../pages/Dashboard/Common/Profile'
+import Statistics from '../pages/Dashboard/Common/Statistics'
+import MainLayout from '../layouts/MainLayout'
+
+import ManageOrders from '../pages/Dashboard/chef/ManageOrders'
+import MyOrders from '../pages/Dashboard/Customer/MyOrders'
+import { createBrowserRouter } from 'react-router'
+import PaymentSuccess from '../pages/Payment/PaymentSuccess'
+
+
+import AdminRoute from './AdminRoute'
+import AddMeals from '../pages/Dashboard/chef/AddMeals'
+import MyMeals from '../pages/Dashboard/chef/MyMeals'
+import ChefRoute from './ChefRoute'
+import ChefRequests from '../pages/Dashboard/Admin/ChefRequests'
+
+export const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <MainLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: '/',
+        element: <Home />,
+      },
+      {
+        path: '/plant/:id',
+        element: <PlantDetails />,
+      },
+      {
+        path: '/payment-success',
+        element: <PaymentSuccess />,
+      },
+    ],
+  },
+  { path: '/login', element: <Login /> },
+  { path: '/signup', element: <SignUp /> },
+  {
+    path: '/dashboard',
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: (
+          <PrivateRoute>
+            <Statistics />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'add-meal',
+        element: (
+          <PrivateRoute>
+            <ChefRoute>
+              <AddMeals />
+            </ChefRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'my-meals',
+        element: (
+          <PrivateRoute>
+            <ChefRoute>
+              <MyMeals />
+            </ChefRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'manage-users',
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageUsers />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'chef-requests',
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ChefRequests />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'profile',
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'my-orders',
+        element: (
+          <PrivateRoute>
+            <MyOrders />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'favorite-meal',
+        element: (
+          <PrivateRoute>
+            <MyOrders />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'my-review',
+        element: (
+          <PrivateRoute>
+            <MyOrders />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'manage-orders',
+        element: (
+          <PrivateRoute>
+            <ChefRoute>
+              <ManageOrders />
+            </ChefRoute>
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
+])
