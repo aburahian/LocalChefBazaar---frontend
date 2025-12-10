@@ -1,53 +1,54 @@
-import Home from '../pages/Home/Home'
-import ErrorPage from '../pages/ErrorPage'
-import Login from '../pages/Login/Login'
-import SignUp from '../pages/SignUp/SignUp'
+import Home from "../pages/Home/Home";
+import ErrorPage from "../pages/ErrorPage";
+import Login from "../pages/Login/Login";
+import SignUp from "../pages/SignUp/SignUp";
 
-import PrivateRoute from './PrivateRoute'
-import DashboardLayout from '../layouts/DashboardLayout'
+import PrivateRoute from "./PrivateRoute";
+import DashboardLayout from "../layouts/DashboardLayout";
 
-import ManageUsers from '../pages/Dashboard/Admin/ManageUsers'
-import Profile from '../pages/Dashboard/Common/Profile'
-import Statistics from '../pages/Dashboard/Common/Statistics'
-import MainLayout from '../layouts/MainLayout'
+import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
+import Profile from "../pages/Dashboard/Common/Profile";
 
-import ManageOrders from '../pages/Dashboard/chef/ManageOrders'
-import MyOrders from '../pages/Dashboard/Customer/MyOrders'
-import { createBrowserRouter } from 'react-router'
-import PaymentSuccess from '../pages/Payment/PaymentSuccess'
+import MainLayout from "../layouts/MainLayout";
 
+import ManageOrders from "../pages/Dashboard/chef/ManageOrders";
+import MyOrders from "../pages/Dashboard/Customer/MyOrders";
+import { createBrowserRouter } from "react-router";
+import PaymentSuccess from "../pages/Payment/PaymentSuccess";
 
-import AdminRoute from './AdminRoute'
-import AddMeals from '../pages/Dashboard/chef/AddMeals'
-import MyMeals from '../pages/Dashboard/chef/MyMeals'
-import ChefRoute from './ChefRoute'
-import ChefRequests from '../pages/Dashboard/Admin/ChefRequests'
-import MealDetails from '../pages/PlantDetails/MealDetails'
+import AdminRoute from "./AdminRoute";
+import AddMeals from "../pages/Dashboard/chef/AddMeals";
+import MyMeals from "../pages/Dashboard/chef/MyMeals";
+import ChefRoute from "./ChefRoute";
+import ChefRequests from "../pages/Dashboard/Admin/ChefRequests";
+import MealDetails from "../pages/PlantDetails/MealDetails";
+import PlatformStatistics from "../components/Dashboard/Statistics/PlatformStatistics";
+import ManageRequest from "../pages/Dashboard/Admin/ManageRequest";
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <MainLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: '/',
+        path: "/",
         element: <Home />,
       },
       {
-        path: '/meals/:id',
+        path: "/meals/:id",
         element: <MealDetails />,
       },
       {
-        path: '/payment-success',
+        path: "/payment-success",
         element: <PaymentSuccess />,
       },
     ],
   },
-  { path: '/login', element: <Login /> },
-  { path: '/signup', element: <SignUp /> },
+  { path: "/login", element: <Login /> },
+  { path: "/signup", element: <SignUp /> },
   {
-    path: '/dashboard',
+    path: "/dashboard",
     element: (
       <PrivateRoute>
         <DashboardLayout />
@@ -58,12 +59,12 @@ export const router = createBrowserRouter([
         index: true,
         element: (
           <PrivateRoute>
-            <Statistics />
+            <Profile />
           </PrivateRoute>
         ),
       },
       {
-        path: 'add-meal',
+        path: "add-meal",
         element: (
           <PrivateRoute>
             <ChefRoute>
@@ -73,7 +74,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'my-meals',
+        path: "my-meals",
         element: (
           <PrivateRoute>
             <ChefRoute>
@@ -83,7 +84,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'manage-users',
+        path: "manage-users",
         element: (
           <PrivateRoute>
             <AdminRoute>
@@ -93,7 +94,17 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'chef-requests',
+        path: "manage-request",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageRequest />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "chef-requests",
         element: (
           <PrivateRoute>
             <AdminRoute>
@@ -103,23 +114,15 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'profile',
+        path: "platform-statistics",
         element: (
           <PrivateRoute>
-            <Profile />
+            <PlatformStatistics />
           </PrivateRoute>
         ),
       },
       {
-        path: 'my-orders',
-        element: (
-          <PrivateRoute>
-            <MyOrders />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: 'favorite-meal',
+        path: "my-orders",
         element: (
           <PrivateRoute>
             <MyOrders />
@@ -127,7 +130,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'my-review',
+        path: "favorite-meal",
         element: (
           <PrivateRoute>
             <MyOrders />
@@ -135,7 +138,15 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'manage-orders',
+        path: "my-review",
+        element: (
+          <PrivateRoute>
+            <MyOrders />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manage-orders",
         element: (
           <PrivateRoute>
             <ChefRoute>
@@ -146,4 +157,4 @@ export const router = createBrowserRouter([
       },
     ],
   },
-])
+]);

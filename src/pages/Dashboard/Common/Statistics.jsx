@@ -1,4 +1,4 @@
-import AdminStatistics from '../../../components/Dashboard/Statistics/AdminStatistics'
+import AdminStatistics from '../../../components/Dashboard/Statistics/PlatformStatistics'
 import CustomerStatistics from '../../../components/Dashboard/Statistics/CustomerStatistics'
 import SellerStatistics from '../../../components/Dashboard/Statistics/SellerStatistics'
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner'

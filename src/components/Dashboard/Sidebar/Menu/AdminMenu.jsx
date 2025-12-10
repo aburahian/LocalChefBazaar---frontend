@@ -2,7 +2,7 @@ import { FaUserCog, FaUserTag, FaChartBar } from 'react-icons/fa'
 import MenuItem from './MenuItem'
 const menuItems = [
   { icon: FaUserCog, label: 'Manage Users', address: 'manage-users' },
-  { icon: FaUserTag, label: 'Mange Request', address: 'mange-request' },
+  { icon: FaUserTag, label: 'Mange Request', address: 'manage-request' },
   { icon: FaChartBar, label: 'Platform Statistics', address: 'platform-statistics' },
 ]
 const AdminMenu = () => {

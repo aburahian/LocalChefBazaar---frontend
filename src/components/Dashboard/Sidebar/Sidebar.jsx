@@ -7,7 +7,6 @@ import { GrLogout } from "react-icons/gr";
 import { AiOutlineBars } from "react-icons/ai";
 import { BsGraphUp, BsPerson } from "react-icons/bs";
 
-
 import MenuItem from "./Menu/MenuItem";
 import AdminMenu from "./Menu/AdminMenu";
 
@@ -20,11 +19,11 @@ import ChefMenu from "./Menu/ChefMenu";
 const Sidebar = () => {
   const { logOut } = useAuth();
   const [isActive, setActive] = useState(false);
-  const [role, isRoleLoading] = useRole()
+  const [role, isRoleLoading] = useRole();
   const handleToggle = () => {
     setActive(!isActive);
   };
- if (isRoleLoading) return <LoadingSpinner />
+  if (isRoleLoading) return <LoadingSpinner />;
   return (
     <>
       {/* Small Screen Navbar, only visible till md breakpoint */}
@@ -62,34 +61,20 @@ const Sidebar = () => {
             </div>
           </div>
 
-  
           <div className="flex flex-col justify-between flex-1 mt-6">
- 
             <nav>
-       
-              <MenuItem
-                icon={BsGraphUp}
-                label="Statistics"
-                address="/dashboard"
-              />
-            
-              {role === 'customer' && <CustomerMenu />}
+              {role === "customer" && <CustomerMenu />}
               {/* <CustomerMenu /> */}
-              {role === 'chef' && <ChefMenu />}
+              {role === "chef" && <ChefMenu />}
               {/* <SellerMenu /> */}
-              {role === 'admin' && <AdminMenu />}
+              {role === "admin" && <AdminMenu />}
               {/* <AdminMenu /> */}
             </nav>
           </div>
 
-   
           <div>
             <hr />
-            <MenuItem
-              icon={BsPerson}
-              label="My Profile"
-              address="/dashboard/profile"
-            />
+            <MenuItem icon={BsPerson} label="My Profile" address="/dashboard" />
 
             <button
               onClick={logOut}
