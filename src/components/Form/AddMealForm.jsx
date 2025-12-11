@@ -13,7 +13,6 @@ const AddMealForm = () => {
 
   const axiosSecure = useAxiosSecure();
 
-  
   const {
     register,
     handleSubmit,
@@ -43,14 +42,14 @@ const AddMealForm = () => {
       toast.error("Failed to add meal");
     },
   });
-const { data: chefUser,  } = useQuery({
-  queryKey: ["chefUser", user?.email],
-  queryFn: async () => {
-    if (!user?.email) return null;
-    const res = await axiosSecure.get(`/user/${user.email}`);
-    return res.data;
-  },
-});
+  const { data: chefUser } = useQuery({
+    queryKey: ["chefUser", user?.email],
+    queryFn: async () => {
+      if (!user?.email) return null;
+      const res = await axiosSecure.get(`/user/${user.email}`);
+      return res.data;
+    },
+  });
   const onSubmit = async (data) => {
     try {
       console.log(data.foodImage[0]);
@@ -131,6 +130,26 @@ const { data: chefUser,  } = useQuery({
               </span>
             )}
           </div>
+          {/* Category */}
+          <div className="flex flex-col">
+            <label className="mb-2 font-medium text-gray-700">Category</label>
+            <select
+              {...register("category", { required: true })}
+              className="px-4 py-3 border rounded-lg focus:ring-2 focus:ring-lime-400 focus:outline-none"
+            >
+              <option value="">Select category</option>
+              <option value="breakfast">Breakfast</option>
+              <option value="lunch">Lunch</option>
+              <option value="dinner">Dinner</option>
+            </select>
+
+            {errors.category && (
+              <span className="text-red-500 text-sm mt-1">
+                Category is required
+              </span>
+            )}
+          </div>
+
           <div className="flex flex-col">
             <label className="mb-2 font-medium text-gray-700">Rating</label>
             <input

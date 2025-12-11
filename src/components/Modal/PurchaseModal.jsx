@@ -42,7 +42,7 @@ const PurchaseModal = ({ closeModal, isOpen, meal }) => {
     if (!confirm.isConfirmed) return;
 
     const orderData = {
-      foodId,
+      mealId:foodId,
       
       mealName: foodName,
       mealImage:foodImage,
@@ -62,6 +62,7 @@ const PurchaseModal = ({ closeModal, isOpen, meal }) => {
 
       if (res.data.insertedId) {
         Swal.fire("Success!", "Order placed successfully!", "success");
+      
         closeModal();
       }
     } catch (err) {

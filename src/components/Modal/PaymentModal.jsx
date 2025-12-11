@@ -1,39 +1,36 @@
-import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
+import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 
-import { useState } from 'react';
+import { useState } from "react";
 
-import useAxiosSecure from '../../hooks/useAxiosSecure';
-
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const PaymentModal = ({ order, onClose }) => {
-     const axiosSecure=useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
   const [loading, setLoading] = useState(false);
   const isOpen = !!order;
   if (!order) return null;
-console.log(order);
- const handlePayment = async() => {
+
+  const handlePayment = async () => {
     setLoading(true);
-         const paymentInfo = {
-        cost: order.price,
-        mealId: order.foodId,
-       customer: { email: order.userEmail },
+    const paymentInfo = {
+      cost: order?.price,
+      mealId: order?.mealId,
+      customer: { email: order?.userEmail },
+      orderId: order?._id?.toString(),
+      mealName: order?.mealName,
+      quantity: order?.quantity,
+      image: order?.mealImage,
+    };
 
-        mealName: order.mealName,
-        quantity: order.quantity,
-        image: order.mealImage,
-      };
+    const res = await axiosSecure.post("/create-checkout-session", paymentInfo);
 
+    console.log(res.data);
 
-        const res = await axiosSecure.post('/create-checkout-session', paymentInfo);
+    window.location.href = res.data.url;
+    setLoading(false);
+    onClose();
+  };
 
-        console.log(res.data);
-        
-        window.location.href = res.data.url;
-         setLoading(false);
-      onClose();
-    }
-
- 
   return (
     <Dialog open={isOpen} onClose={onClose} className="relative z-10">
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
