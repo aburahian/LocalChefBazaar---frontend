@@ -18,15 +18,14 @@ const MealDetails = () => {
   const [isOpen, setIsOpen] = useState(false);
   const axiosSecure = useAxiosSecure();
 
-  // Redirect if user not logged in
+
   if (!user) navigate("/login");
 
-  // Fetch meal data
   const { data: meal = {}, isLoading } = useQuery({
     queryKey: ["meal", id],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `${import.meta.env.VITE_API_URL}/meals/${id}`
+        `/meals/${id}`
       );
       return res.data;
     },
@@ -48,7 +47,7 @@ const MealDetails = () => {
     queryKey: ["reviews", id],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `${import.meta.env.VITE_API_URL}/reviews/${id}`
+        `/reviews/${id}`
       );
       return res.data;
     },
@@ -145,7 +144,7 @@ const ReviewForm = ({ mealId }) => {
   const onSubmit = async (data) => {
     if (!user) return alert("You must be logged in to submit a review.");
     try {
-      await axiosSecure.post(`${import.meta.env.VITE_API_URL}/reviews`, {
+      await axiosSecure.post(`/reviews`, {
         mealId,
         userName: user.displayName,
         rating: Number(data.rating),

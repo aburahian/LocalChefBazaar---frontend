@@ -49,7 +49,7 @@ const UpdateUserRoleModal = ({ isOpen, closeModal, user, refetch }) => {
                   className="w-full my-3 border border-gray-200 rounded-xl px-2 py-3"
                   name="role"
                 >
-                  <option value="user">Customer</option>
+                  <option value="customer">Customer</option>
                   <option value="chef">Chef</option>
                   <option value="admin">Admin</option>
                 </select>

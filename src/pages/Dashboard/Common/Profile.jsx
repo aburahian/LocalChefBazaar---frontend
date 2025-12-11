@@ -24,7 +24,7 @@ const Profile = () => {
     }
 
     const res = await axiosSecure.post(
-      'http://localhost:3000/role-request',
+      '/role-request',
       payload,
      
     )

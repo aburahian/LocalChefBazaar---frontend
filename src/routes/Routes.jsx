@@ -11,7 +11,6 @@ import Profile from "../pages/Dashboard/Common/Profile";
 
 import MainLayout from "../layouts/MainLayout";
 
-import ManageOrders from "../pages/Dashboard/chef/ManageOrders";
 import MyOrders from "../pages/Dashboard/Customer/MyOrders";
 import { createBrowserRouter } from "react-router";
 import PaymentSuccess from "../pages/Payment/PaymentSuccess";
@@ -21,9 +20,11 @@ import AddMeals from "../pages/Dashboard/chef/AddMeals";
 import MyMeals from "../pages/Dashboard/chef/MyMeals";
 import ChefRoute from "./ChefRoute";
 import ChefRequests from "../pages/Dashboard/Admin/ChefRequests";
-import MealDetails from "../pages/PlantDetails/MealDetails";
+import MealDetails from "../pages/MealDetails/MealDetails";
 import PlatformStatistics from "../components/Dashboard/Statistics/PlatformStatistics";
 import ManageRequest from "../pages/Dashboard/Admin/ManageRequest";
+import OrderRequests from "../pages/Dashboard/chef/OrderRequests";
+
 
 export const router = createBrowserRouter([
   {
@@ -84,6 +85,17 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: "order-requests",
+        element: (
+          <PrivateRoute>
+            <ChefRoute>
+              <OrderRequests />
+            </ChefRoute>
+          </PrivateRoute>
+        ),
+      },
+      
+      {
         path: "manage-users",
         element: (
           <PrivateRoute>
@@ -142,16 +154,6 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyOrders />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "manage-orders",
-        element: (
-          <PrivateRoute>
-            <ChefRoute>
-              <ManageOrders />
-            </ChefRoute>
           </PrivateRoute>
         ),
       },

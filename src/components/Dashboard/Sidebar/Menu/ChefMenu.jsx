@@ -5,7 +5,7 @@ import MenuItem from './MenuItem'
 const menuItems = [
   { icon: BsFillHouseAddFill, label: 'Create Meal', address: 'add-meal' },
   { icon: MdHomeWork, label: 'My Meals', address: 'my-meals' },
-  { icon: MdOutlineManageHistory, label: 'Manage Orders', address: 'manage-orders' },
+  { icon: MdOutlineManageHistory, label: 'Order Requests', address: 'order-requests' },
 ]
 
 const ChefMenu = () => (

@@ -1,17 +1,19 @@
 import { useForm, useFieldArray } from "react-hook-form";
 import { imageUpload } from "../../utils";
 import useAuth from "../../hooks/useAuth";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import ErrorPage from "../../pages/ErrorPage";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { TbFidgetSpinner } from "react-icons/tb";
 
-const AddMealForm = ({ chefId }) => {
+const AddMealForm = () => {
   const { user } = useAuth();
+
   const axiosSecure = useAxiosSecure();
 
+  
   const {
     register,
     handleSubmit,
@@ -41,15 +43,24 @@ const AddMealForm = ({ chefId }) => {
       toast.error("Failed to add meal");
     },
   });
-
+const { data: chefUser,  } = useQuery({
+  queryKey: ["chefUser", user?.email],
+  queryFn: async () => {
+    if (!user?.email) return null;
+    const res = await axiosSecure.get(`/user/${user.email}`);
+    return res.data;
+  },
+});
   const onSubmit = async (data) => {
     try {
+      console.log(data.foodImage[0]);
+
       const imageFile = data.foodImage[0];
       const imageUrl = await imageUpload(imageFile);
 
       const payload = {
         foodName: data.foodName,
-        chefName: user.displayName,
+        chefName: user?.displayName,
         foodImage: imageUrl,
         price: Number(data.price),
         rating: Number(data.rating),
@@ -57,8 +68,8 @@ const AddMealForm = ({ chefId }) => {
         estimatedDeliveryTime: data.estimatedDeliveryTime,
         chefExperience: data.chefExperience,
         delivery_area: data.delivery_area,
-        chefId,
-        userEmail: user.email,
+        chefId: chefUser?.chefId,
+        chefEmail: user?.email,
         createdAt: new Date().toISOString(),
       };
 

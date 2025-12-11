@@ -12,9 +12,9 @@ const ChefRequests = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ['seller-requests', user?.email],
+    queryKey: ['chef-requests', user?.email],
     queryFn: async () => {
-      const result = await axiosSecure(`/seller-requests`)
+      const result = await axiosSecure(`/chef-requests`)
       return result.data
     },
   })

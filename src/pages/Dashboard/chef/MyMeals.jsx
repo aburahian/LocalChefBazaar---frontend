@@ -1,88 +1,74 @@
-import { useQuery } from '@tanstack/react-query'
-import PlantDataRow from '../../../components/Dashboard/TableRows/PlantDataRow'
-import useAuth from '../../../hooks/useAuth'
-import LoadingSpinner from '../../../components/Shared/LoadingSpinner'
-import useAxiosSecure from '../../../hooks/useAxiosSecure'
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+
+import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
+import UpdateMealModal from "../../../components/Modal/UpdateMealModal";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import MealCard from "./MealCard";
 
 const MyMeals = () => {
-  const { user } = useAuth()
-  const axiosSecure = useAxiosSecure()
-  const { data: plants = [], isLoading } = useQuery({
-    queryKey: ['inventory', user?.email],
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+
+  const { data: meals = [], isLoading, refetch } = useQuery({
+    queryKey: ["my_meals", user?.email],
     queryFn: async () => {
-      const result = await axiosSecure(`/my-inventory/${user?.email}`)
-
-      return result.data
+      const res = await axiosSecure(`/my-meals/${user?.email}`);
+      return res.data;
     },
-  })
+  });
 
-  if (isLoading) return <LoadingSpinner />
+  const [selectedMeal, setSelectedMeal] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleDelete = async (id) => {
+    const confirmed = await Swal.fire({
+      title: "Are you sure?",
+      text: "This meal will be deleted permanently.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (!confirmed.isConfirmed) return;
+
+    const res = await axiosSecure.delete(`/meals/${id}`);
+
+    if (res.data.deletedCount > 0) {
+      Swal.fire("Deleted!", "Meal has been removed.", "success");
+      refetch();
+    }
+  };
+
+  const handleUpdate = (meal) => {
+    setSelectedMeal(meal);
+    setIsModalOpen(true);
+  };
+
+  if (isLoading) return <LoadingSpinner />;
+
   return (
-    <>
-      <div className='container mx-auto px-4 sm:px-8'>
-        <div className='py-8'>
-          <div className='-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto'>
-            <div className='inline-block min-w-full shadow rounded-lg overflow-hidden'>
-              <table className='min-w-full leading-normal'>
-                <thead>
-                  <tr>
-                    <th
-                      scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
-                    >
-                      Image
-                    </th>
-                    <th
-                      scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
-                    >
-                      Name
-                    </th>
-                    <th
-                      scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
-                    >
-                      Category
-                    </th>
-                    <th
-                      scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
-                    >
-                      Price
-                    </th>
-                    <th
-                      scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
-                    >
-                      Quantity
-                    </th>
+    <div className="container mx-auto px-4 sm:px-8 py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {meals.map((meal) => (
+        <MealCard
+          key={meal._id}
+          meal={meal}
+          onDelete={handleDelete}
+          onUpdate={handleUpdate}
+        />
+      ))}
 
-                    <th
-                      scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
-                    >
-                      Delete
-                    </th>
-                    <th
-                      scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
-                    >
-                      Update
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {plants.map(plant => (
-                    <PlantDataRow key={plant._id} plant={plant} />
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  )
-}
+      {isModalOpen && selectedMeal && (
+        <UpdateMealModal
+          meal={selectedMeal}
+          closeModal={() => setIsModalOpen(false)}
+          refetch={refetch}
+        />
+      )}
+    </div>
+  );
+};
 
-export default MyMeals
+export default MyMeals;

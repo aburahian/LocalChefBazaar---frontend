@@ -6,7 +6,7 @@ const BecomeSellerModal = ({ closeModal, isOpen }) => {
 
   const handleRequest = async () => {
     try {
-      await axiosSecure.post('/become-seller')
+      await axiosSecure.post('/become-chef')
       toast.success('Request sent, please wait for admin approval!')
     } catch (err) {
       console.log(err)
