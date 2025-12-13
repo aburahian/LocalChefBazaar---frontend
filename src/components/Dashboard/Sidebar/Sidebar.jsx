@@ -63,18 +63,19 @@ const Sidebar = () => {
 
           <div className="flex flex-col justify-between flex-1 mt-6">
             <nav>
+                <MenuItem icon={BsPerson} label="My Profile" address="/dashboard" />
               {role === "customer" && <CustomerMenu />}
-              {/* <CustomerMenu /> */}
+        
               {role === "chef" && <ChefMenu />}
-              {/* <SellerMenu /> */}
+     
               {role === "admin" && <AdminMenu />}
-              {/* <AdminMenu /> */}
+          
             </nav>
           </div>
 
           <div>
             <hr />
-            <MenuItem icon={BsPerson} label="My Profile" address="/dashboard" />
+          
 
             <button
               onClick={logOut}

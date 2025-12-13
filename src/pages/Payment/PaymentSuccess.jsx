@@ -12,11 +12,11 @@ const PaymentSuccess = () => {
       if (!sessionId) return;
 
       try {
-        const res = await axios.post(
+       await axios.post(
           `${import.meta.env.VITE_API_URL}/payment-success`,
           { sessionId }
         );
-        console.log("Payment verified:", res.data);
+     
       } catch (err) {
         console.error("Payment verification error:", err.response?.data || err);
       }

@@ -17,8 +17,10 @@ const PurchaseModal = ({ closeModal, isOpen, meal }) => {
     foodImage,
     chefName,
     price,
+    estimatedDeliveryTime,
     chefId
   } = meal || {};
+
 
 
 
@@ -50,6 +52,7 @@ const PurchaseModal = ({ closeModal, isOpen, meal }) => {
       quantity,
       chefName,
       chefId,
+      estimatedDeliveryTime,
       paymentStatus: "pending",
       userEmail: user?.email,
       userAddress: address,

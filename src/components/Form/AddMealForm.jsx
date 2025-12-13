@@ -61,6 +61,7 @@ const AddMealForm = () => {
         foodName: data.foodName,
         chefName: user?.displayName,
         foodImage: imageUrl,
+        category:data.category,
         price: Number(data.price),
         rating: Number(data.rating),
         ingredients: data.ingredients.map((i) => i.name),
