@@ -26,8 +26,8 @@ const Sidebar = () => {
   if (isRoleLoading) return <LoadingSpinner />;
   return (
     <>
-      {/* Small Screen Navbar, only visible till md breakpoint */}
-      <div className="bg-gray-100 text-gray-800 flex justify-between md:hidden">
+    
+      <div className="bg-[#FFF8F0] text-gray-800 flex justify-between md:hidden">
         <div>
           <div className="block cursor-pointer p-4 font-bold">
             <Link to="/">
@@ -46,7 +46,7 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <div
-        className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
+        className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-[#FFF8F0] w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
           isActive && "-translate-x-full"
         }  md:translate-x-0  transition duration-200 ease-in-out`}
       >
@@ -63,19 +63,21 @@ const Sidebar = () => {
 
           <div className="flex flex-col justify-between flex-1 mt-6">
             <nav>
-                <MenuItem icon={BsPerson} label="My Profile" address="/dashboard" />
+              <MenuItem
+                icon={BsPerson}
+                label="My Profile"
+                address="/dashboard"
+              />
               {role === "customer" && <CustomerMenu />}
-        
+
               {role === "chef" && <ChefMenu />}
-     
+
               {role === "admin" && <AdminMenu />}
-          
             </nav>
           </div>
 
           <div>
             <hr />
-          
 
             <button
               onClick={logOut}

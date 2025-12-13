@@ -185,7 +185,7 @@ const MealDetails = () => {
 
             <button
               onClick={() => setShowReviewForm(true)}
-              className="px-4 py-2 bg-[#2b7fff] text-white rounded-lg mt-4"
+              className="px-4 py-2 bg-[#FF6B35] text-white rounded-lg mt-4"
             >
               Write a Review
             </button>

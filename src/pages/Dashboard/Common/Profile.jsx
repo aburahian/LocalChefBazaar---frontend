@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import useRole from "../../../hooks/useRole";
-import coverImg from "../../../assets/images/cover.jpg";
+import coverImg from "../../../assets/images/logo-flat.png";
 
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -20,7 +20,7 @@ const Profile = () => {
     setLoading(true);
     try {
       const payload = {
-        requestType: type, // chef or admin
+        requestType: type,
       };
 
       const res = await axiosSecure.post("/role-request", payload);
@@ -40,12 +40,12 @@ const Profile = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white shadow-lg rounded-2xl md:w-4/5 lg:w-3/5">
+    <div className="flex justify-center items-center min-h-screen bg-[#FFF8F0]">
+      <div className="bg-[white] shadow-lg rounded-2xl md:w-4/5 lg:w-3/5">
         <img
           alt="cover photo"
           src={coverImg}
-          className="w-full mb-4 rounded-t-lg h-56 object-cover"
+          className="w-full h-full mb-4 rounded-t-lg  object-cover"
         />
 
         <div className="flex flex-col items-center p-4 -mt-16">
@@ -55,7 +55,7 @@ const Profile = () => {
             className="mx-auto object-cover rounded-full h-24 w-24 border-2 border-white"
           />
 
-          <p className="p-2 px-4 mt-2 text-xs text-white bg-[#2b7fff] rounded-full">
+          <p className="p-2 px-4 mt-2 text-xs text-white bg-[#FF6B35] rounded-full">
             Role: {role}
           </p>
 
@@ -97,7 +97,7 @@ const Profile = () => {
                   <button
                     disabled={loading}
                     onClick={() => handleRequest("chef")}
-                    className="bg-[#2b7fff] px-6 py-2 rounded-lg text-white hover:bg-lime-700"
+                    className="bg-[#FF6B35] px-6 py-2 rounded-lg text-white hover:bg-lime-700"
                   >
                     Be a Chef
                   </button>
@@ -105,7 +105,7 @@ const Profile = () => {
                   <button
                     disabled={loading}
                     onClick={() => handleRequest("admin")}
-                    className="bg-[#2b7fff] px-6 py-2 rounded-lg text-white hover:bg-lime-700"
+                    className="bg-[#FF6B35] px-6 py-2 rounded-lg text-white hover:bg-lime-700"
                   >
                     Be an Admin
                   </button>

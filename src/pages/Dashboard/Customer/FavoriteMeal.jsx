@@ -51,7 +51,7 @@ const FavoriteMeal = () => {
           </thead>
           <tbody>
             {favorites.map((meal) => (
-              <tr key={meal._id} className="hover:bg-gray-100">
+              <tr key={meal._id} className="hover:bg-[#FFF8F0]">
                 <td className="border p-2">{meal.foodName}</td>
                 <td className="border p-2">{meal.chefName}</td>
                 <td className="border p-2">${meal.price || "-"}</td>

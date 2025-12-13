@@ -77,7 +77,7 @@ const SignUp = () => {
             <input
               type="text"
               placeholder="Your Name"
-              className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-lime-400 focus:outline-none bg-gray-100"
+              className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-lime-400 focus:outline-none bg-[#FFF8F0]"
               {...register("name", {
                 required: "Name is required",
                 maxLength: 20,
@@ -96,7 +96,7 @@ const SignUp = () => {
             <input
               type="text"
               placeholder="Your Address"
-              className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-lime-400 bg-gray-100"
+              className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-lime-400 bg-[#FFF8F0]"
               {...register("address", { required: "Address is required" })}
             />
             {errors.address && (
@@ -112,7 +112,7 @@ const SignUp = () => {
             <input
               type="file"
               accept="image/*"
-              className="cursor-pointer px-4 py-2 rounded-lg border-2 border-dashed border-lime-300 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-lime-400"
+              className="cursor-pointer px-4 py-2 rounded-lg border-2 border-dashed border-lime-300 bg-[#FFF8F0] focus:outline-none focus:ring-2 focus:ring-lime-400"
               {...register("image", { required: "Profile image is required" })}
             />
             {errors.image && (
@@ -131,7 +131,7 @@ const SignUp = () => {
             <input
               type="email"
               placeholder="Your Email"
-              className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-lime-400 focus:outline-none bg-gray-100"
+              className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-lime-400 focus:outline-none bg-[#FFF8F0]"
               {...register("email", {
                 required: "Email is required",
                 pattern: {
@@ -154,7 +154,7 @@ const SignUp = () => {
               type="password"
               placeholder="******"
               autoComplete="new-password"
-              className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-lime-400 focus:outline-none bg-gray-100"
+              className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-lime-400 focus:outline-none bg-[#FFF8F0]"
               {...register("password", {
                 required: "Password is required",
                 minLength: 6,
@@ -173,7 +173,7 @@ const SignUp = () => {
             <input
               type="password"
               placeholder="******"
-              className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-lime-400 bg-gray-100"
+              className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-lime-400 bg-[#FFF8F0]"
               {...register("confirmPassword", {
                 required: "Confirm password is required",
                 validate: (value) =>
@@ -189,7 +189,7 @@ const SignUp = () => {
 
           <button
             type="submit"
-            className="w-full bg-[#2b7fff] text-white py-3 rounded-lg font-semibold hover:bg-lime-600 transition"
+            className="w-full bg-[#FF6B35] text-white py-3 rounded-lg font-semibold hover:bg-[#FFF8F0] transition"
           >
             {loading ? (
               <TbFidgetSpinner className="animate-spin m-auto" />
@@ -209,7 +209,7 @@ const SignUp = () => {
         {/* Google Sign In */}
         <div
           onClick={handleGoogleSignIn}
-          className="flex items-center justify-center space-x-3 border border-gray-300 py-2 rounded-lg cursor-pointer hover:bg-gray-100 transition"
+          className="flex items-center justify-center space-x-3 border border-gray-300 py-2 rounded-lg cursor-pointer hover:bg-[#FFF8F0] transition"
         >
           <FcGoogle size={28} />
           <span className="font-medium text-gray-700">

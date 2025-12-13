@@ -94,7 +94,7 @@ const UpdateMealForm = () => {
                       accept="image/*"
                       hidden
                     />
-                    <div className="bg-[#2b7fff] text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-[#2b7fff]">
+                    <div className="bg-[#FF6B35] text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-[#FF6B35]">
                       Upload Image
                     </div>
                   </label>
@@ -105,7 +105,7 @@ const UpdateMealForm = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full cursor-pointer p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-[#2b7fff] "
+              className="w-full cursor-pointer p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-[#FF6B35] "
             >
               Update Plant
             </button>

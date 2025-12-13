@@ -98,10 +98,19 @@ const MyReviews = () => {
               key={rev._id}
               className="bg-white shadow-md rounded p-4 flex flex-col gap-2"
             >
-              <p><strong>Meal:</strong> {rev.mealName}</p>
-              <p><strong>Rating:</strong> ⭐ {rev.rating}</p>
-              <p><strong>Comment:</strong> {rev.comment}</p>
-              <p><strong>Date:</strong> {new Date(rev.createdAt).toLocaleDateString()}</p>
+              <p>
+                <strong>Meal:</strong> {rev.mealName}
+              </p>
+              <p>
+                <strong>Rating:</strong> ⭐ {rev.rating}
+              </p>
+              <p>
+                <strong>Comment:</strong> {rev.comment}
+              </p>
+              <p>
+                <strong>Date:</strong>{" "}
+                {new Date(rev.createdAt).toLocaleDateString()}
+              </p>
               <div className="flex gap-2 mt-2">
                 <button
                   onClick={() => handleDelete(rev._id)}
@@ -124,7 +133,7 @@ const MyReviews = () => {
       {/* Edit Modal */}
       {editingReview && (
         <div className="fixed inset-0  flex items-center justify-center">
-          <div className="bg-gray-100 rounded p-6 w-96">
+          <div className="bg-[#FFF8F0] rounded p-6 w-96">
             <h3 className="text-xl font-bold mb-4">Update Review</h3>
             <label className="block mb-2">
               Rating:

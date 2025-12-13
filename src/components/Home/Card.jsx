@@ -51,7 +51,7 @@ const Card = ({ meal }) => {
       {/* See Details */}
       <button
         onClick={handleDetails}
-        className="mt-3 w-full py-2 bg-[#2b7fff] text-white rounded-lg hover:bg-lime-600 transition"
+        className="mt-3 w-full py-2 bg-[#FF6B35] text-white rounded-lg hover:bg-[#FF4C29] transition"
       >
         See Details
       </button>

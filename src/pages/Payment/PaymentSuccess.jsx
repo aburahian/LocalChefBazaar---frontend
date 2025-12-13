@@ -35,7 +35,7 @@ const PaymentSuccess = () => {
         </p>
         <Link
           to="/dashboard/my-orders"
-          className="inline-block bg-[#2b7fff] text-white font-semibold py-2 px-4 rounded hover:bg-lime-600 transition duration-300"
+          className="inline-block bg-[#FF6B35] text-white font-semibold py-2 px-4 rounded hover:bg-[#FFF8F0] transition duration-300"
         >
           Go to My Orders
         </Link>

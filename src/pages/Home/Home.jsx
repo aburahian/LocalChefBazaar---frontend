@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import LatestMeals from "../../components/Home/LatestMeals";
 import BannerSlider from "./BannerSlider";
+import Reviews from "./Reviews";
 
 const Home = () => {
   return (
@@ -21,11 +22,14 @@ const Home = () => {
         <div className="mt-6 text-center md:text-center">
           <Link
             to="/meals"
-            className="inline-block bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition"
+            className="inline-block bg-[#FF6B35] hover:bg-[#FF4C29] text-white px-6 py-2 rounded-lg font-medium transition"
           >
             See More
           </Link>
         </div>
+      </section>
+      <section>
+        <Reviews/>
       </section>
     </div>
   );

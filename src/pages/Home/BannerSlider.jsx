@@ -32,13 +32,13 @@ const bannerData = [
   },
   {
     id: 5,
-    image: "https://i.ibb.co/XYZ/banner5.jpg",
+    image: "https://i.ibb.co.com/spFcQMHH/Healthy-Cobb-Salad-3.jpg",
     title: "Healthy Salads",
     subtitle: "Fresh & Green Choices",
   },
   {
     id: 6,
-    image: "https://i.ibb.co/XYZ/banner6.jpg",
+    image: "https://i.ibb.co.com/SXNTYmzQ/Juicy-Hamburgers7.jpg",
     title: "Juicy Burgers",
     subtitle: "Grilled to Perfection",
   },
@@ -72,7 +72,7 @@ const BannerSlider = () => {
       autoplay={{ delay: 3000, disableOnInteraction: false }}
       pagination={{ clickable: true }}
       navigation
-      className="w-11/12 h-[400px] md:h-[500px] rounded-2xl"
+      className="w-11/12 h-[400px] md:h-[400px] rounded-2xl"
     >
       {bannerData.map((banner) => (
         <SwiperSlide key={banner.id}>
@@ -84,7 +84,7 @@ const BannerSlider = () => {
               backgroundPosition: "center",
             }}
           >
-            <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-center text-white px-4">
+            <div className="absolute inset-0  bg-opacity-40 flex flex-col justify-center items-center text-center text-white px-4">
               <h2 className="text-3xl md:text-5xl font-bold mb-2">
                 {banner.title}
               </h2>
