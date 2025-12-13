@@ -4,7 +4,7 @@ import useAuth from "../../hooks/useAuth";
 const Card = ({ meal }) => {
   const navigate = useNavigate();
   const { user } = useAuth();
-console.log(meal);
+
 
   const {
     _id,

@@ -1,12 +1,14 @@
-import Plants from '../../components/Home/Foods'
+import Meals from "../../components/Home/Meals";
+import BannerSlider from "./BannerSlider";
 
 const Home = () => {
   return (
     <div>
-      <Plants />
+      <BannerSlider />
+      <Meals />
       {/* More components */}
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

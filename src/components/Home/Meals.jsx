@@ -4,15 +4,21 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import LoadingSpinner from '../Shared/LoadingSpinner'
 
-const Foods = () => {
-  const { data: meals = [], isLoading } = useQuery({
-    queryKey: ['meals'],
+const Meals = () => {
+  // const { data: meals = [], isLoading } = useQuery({
+  //   queryKey: ['meals'],
+  //   queryFn: async () => {
+  //     const result = await axios(`${import.meta.env.VITE_API_URL}/meals`)
+  //     return result.data
+  //   },
+  // })
+ const { data: meals = [], isLoading } = useQuery({
+    queryKey: ['latestmeals'],
     queryFn: async () => {
-      const result = await axios(`${import.meta.env.VITE_API_URL}/meals`)
+      const result = await axios(`${import.meta.env.VITE_API_URL}/meals/latest`)
       return result.data
     },
   })
-
   if (isLoading) return <LoadingSpinner />
 
   return (
@@ -28,4 +34,4 @@ const Foods = () => {
   )
 }
 
-export default Foods
+export default Meals
