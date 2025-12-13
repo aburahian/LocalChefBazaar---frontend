@@ -12,11 +12,9 @@ const PaymentSuccess = () => {
       if (!sessionId) return;
 
       try {
-       await axios.post(
-          `${import.meta.env.VITE_API_URL}/payment-success`,
-          { sessionId }
-        );
-     
+        await axios.post(`${import.meta.env.VITE_API_URL}/payment-success`, {
+          sessionId,
+        });
       } catch (err) {
         console.error("Payment verification error:", err.response?.data || err);
       }
@@ -37,7 +35,7 @@ const PaymentSuccess = () => {
         </p>
         <Link
           to="/dashboard/my-orders"
-          className="inline-block bg-lime-500 text-white font-semibold py-2 px-4 rounded hover:bg-lime-600 transition duration-300"
+          className="inline-block bg-[#2b7fff] text-white font-semibold py-2 px-4 rounded hover:bg-lime-600 transition duration-300"
         >
           Go to My Orders
         </Link>

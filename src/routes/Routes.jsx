@@ -26,7 +26,7 @@ import ManageRequest from "../pages/Dashboard/Admin/ManageRequest";
 import OrderRequests from "../pages/Dashboard/chef/OrderRequests";
 import FavoriteMeal from "../pages/Dashboard/Customer/FavoriteMeal";
 import MyReview from "../pages/Dashboard/Customer/MyReview";
-
+import Meals from "../pages/Meals/Meals";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +37,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/meals",
+        element: <Meals />,
       },
       {
         path: "/meals/:id",
@@ -96,7 +100,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      
+
       {
         path: "manage-users",
         element: (

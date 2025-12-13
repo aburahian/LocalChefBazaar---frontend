@@ -5,7 +5,6 @@ const Card = ({ meal }) => {
   const navigate = useNavigate();
   const { user } = useAuth();
 
-
   const {
     _id,
     foodName,
@@ -25,7 +24,7 @@ const Card = ({ meal }) => {
   };
 
   return (
-    <div className="col-span-1 shadow-xl p-4 rounded-xl bg-white group">
+    <div className="flex flex-col justify-between shadow-xl p-4 rounded-xl bg-white group">
       {/* Image */}
       <div className="aspect-square w-full overflow-hidden rounded-xl mb-3">
         <img
@@ -52,7 +51,7 @@ const Card = ({ meal }) => {
       {/* See Details */}
       <button
         onClick={handleDetails}
-        className="mt-3 w-full py-2 bg-lime-500 text-white rounded-lg hover:bg-lime-600 transition"
+        className="mt-3 w-full py-2 bg-[#2b7fff] text-white rounded-lg hover:bg-lime-600 transition"
       >
         See Details
       </button>

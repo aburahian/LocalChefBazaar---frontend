@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, } from "react-router";
+import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 
 import Container from "../../components/Shared/Container";
@@ -12,7 +12,6 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import ReviewForm from "../../components/Form/ReviewForm";
 
-
 const MealDetails = () => {
   const { user } = useAuth();
 
@@ -22,8 +21,6 @@ const MealDetails = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [showReviewForm, setShowReviewForm] = useState(false);
-
-
 
   const { data: meal = {}, isLoading } = useQuery({
     queryKey: ["meal", id],
@@ -54,28 +51,26 @@ const MealDetails = () => {
     },
   });
 
+  useEffect(() => {
+    if (!meal || !user) return;
+    setIsFavorite(meal.favorites?.includes(user.email) || false);
+  }, [meal, user]);
 
-useEffect(() => {
-  if (!meal || !user) return;
-  setIsFavorite(meal.favorites?.includes(user.email) || false);
-}, [meal, user]);
+  const handleFavorite = async () => {
+    if (!user) return;
 
-const handleFavorite = async () => {
-  if (!user) return;
+    try {
+      const res = await axiosSecure.post(`/meals/favorite/${meal._id}`, {
+        userEmail: user.email,
+      });
 
-  try {
-    const res = await axiosSecure.post(`/meals/favorite/${meal._id}`, {
-      userEmail: user.email,
-    });
-
-    if (res.data.success) {
-      setIsFavorite(res.data.favorited);
+      if (res.data.success) {
+        setIsFavorite(res.data.favorited);
+      }
+    } catch (err) {
+      console.error(err);
     }
-  } catch (err) {
-    console.error(err);
-  }
-};
-
+  };
 
   if (isLoading) return <LoadingSpinner />;
   const closeModal = () => setIsOpen(false);
@@ -126,7 +121,6 @@ const handleFavorite = async () => {
           {/* FAVORITE BUTTON */}
           <button
             onClick={handleFavorite}
-       
             className={`px-4 py-2 rounded-lg border w-fit flex items-center gap-2 
               ${
                 isFavorite
@@ -191,7 +185,7 @@ const handleFavorite = async () => {
 
             <button
               onClick={() => setShowReviewForm(true)}
-              className="px-4 py-2 bg-lime-500 text-white rounded-lg mt-4"
+              className="px-4 py-2 bg-[#2b7fff] text-white rounded-lg mt-4"
             >
               Write a Review
             </button>

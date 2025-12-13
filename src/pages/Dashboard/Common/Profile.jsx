@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import useRole from "../../../hooks/useRole";
 import coverImg from "../../../assets/images/cover.jpg";
@@ -13,36 +13,31 @@ const Profile = () => {
   const [status, setStatus] = useState("active");
   const [chefId, setChefId] = useState(null);
   const [loading, setLoading] = useState(false);
- const axiosSecure=useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
   if (isRoleLoading || !role) return <LoadingSpinner />;
 
   const handleRequest = async (type) => {
-  setLoading(true)
-  try {
-    const payload = {
-      requestType: type, // chef or admin
+    setLoading(true);
+    try {
+      const payload = {
+        requestType: type, // chef or admin
+      };
+
+      const res = await axiosSecure.post("/role-request", payload);
+
+      toast(res.data.message || `Request to become ${type} submitted.`);
+    } catch (err) {
+      console.error(err);
+
+      if (err.response?.status === 409) {
+        toast("You already have a pending request. Chill.");
+      } else {
+        toast("Failed to send request.");
+      }
+    } finally {
+      setLoading(false);
     }
-
-    const res = await axiosSecure.post(
-      '/role-request',
-      payload,
-     
-    )
-
-    toast(res.data.message || `Request to become ${type} submitted.`)
-  } catch (err) {
-    console.error(err)
-
-    if (err.response?.status === 409) {
-      toast("You already have a pending request. Chill.")
-    } else {
-      toast("Failed to send request.")
-    }
-  } finally {
-    setLoading(false)
-  }
-}
-
+  };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
@@ -60,7 +55,7 @@ const Profile = () => {
             className="mx-auto object-cover rounded-full h-24 w-24 border-2 border-white"
           />
 
-          <p className="p-2 px-4 mt-2 text-xs text-white bg-lime-500 rounded-full">
+          <p className="p-2 px-4 mt-2 text-xs text-white bg-[#2b7fff] rounded-full">
             Role: {role}
           </p>
 
@@ -102,7 +97,7 @@ const Profile = () => {
                   <button
                     disabled={loading}
                     onClick={() => handleRequest("chef")}
-                    className="bg-lime-500 px-6 py-2 rounded-lg text-white hover:bg-lime-700"
+                    className="bg-[#2b7fff] px-6 py-2 rounded-lg text-white hover:bg-lime-700"
                   >
                     Be a Chef
                   </button>
@@ -110,7 +105,7 @@ const Profile = () => {
                   <button
                     disabled={loading}
                     onClick={() => handleRequest("admin")}
-                    className="bg-lime-500 px-6 py-2 rounded-lg text-white hover:bg-lime-700"
+                    className="bg-[#2b7fff] px-6 py-2 rounded-lg text-white hover:bg-lime-700"
                   >
                     Be an Admin
                   </button>

@@ -1,64 +1,68 @@
-import { useQuery } from '@tanstack/react-query'
-import SellerRequestsDataRow from '../../../components/Dashboard/TableRows/SellerRequestsDataRow'
-import useAuth from '../../../hooks/useAuth'
-import useAxiosSecure from '../../../hooks/useAxiosSecure'
-import LoadingSpinner from '../../../components/Shared/LoadingSpinner'
+import { useQuery } from "@tanstack/react-query";
+import SellerRequestsDataRow from "../../../components/Dashboard/TableRows/SellerRequestsDataRow";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 
 const ChefRequests = () => {
-  const { user } = useAuth()
-  const axiosSecure = useAxiosSecure()
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const {
     data: requests = [],
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ['chef-requests', user?.email],
+    queryKey: ["chef-requests", user?.email],
     queryFn: async () => {
-      const result = await axiosSecure(`/chef-requests`)
-      return result.data
+      const result = await axiosSecure(`/chef-requests`);
+      return result.data;
     },
-  })
-  console.log(requests)
+  });
+  console.log(requests);
 
-  if (isLoading) return <LoadingSpinner />
+  if (isLoading) return <LoadingSpinner />;
   return (
-    <div className='container mx-auto px-4 sm:px-8'>
-      <div className='py-8'>
-        <div className='-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto'>
-          <div className='inline-block min-w-full shadow rounded-lg overflow-hidden'>
-            <table className='min-w-full leading-normal'>
-              <thead>
-                <tr>
-                  <th
-                    scope='col'
-                    className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
-                  >
-                    Email
-                  </th>
+    <div className="p-6 space-y-6">
+      <h1 className="text-3xl font-bold mb-6">Platform Statistics</h1>
 
-                  <th
-                    scope='col'
-                    className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
-                  >
-                    Action
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {requests.map(req => (
-                  <SellerRequestsDataRow
-                    refetch={refetch}
-                    key={req._id}
-                    req={req}
-                  />
-                ))}
-              </tbody>
-            </table>
+      <div className="container mx-auto px-4 sm:px-8">
+        <div className="py-8">
+          <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+            <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
+              <table className="min-w-full leading-normal">
+                <thead>
+                  <tr>
+                    <th
+                      scope="col"
+                      className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                    >
+                      Email
+                    </th>
+
+                    <th
+                      scope="col"
+                      className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                    >
+                      Action
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {requests.map((req) => (
+                    <SellerRequestsDataRow
+                      refetch={refetch}
+                      key={req._id}
+                      req={req}
+                    />
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ChefRequests
+export default ChefRequests;

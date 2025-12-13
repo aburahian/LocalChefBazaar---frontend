@@ -3,22 +3,22 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 
-const ReviewForm = ({ mealId,mealName, refetch, onClose }) => {
+const ReviewForm = ({ mealId, mealName, refetch, onClose }) => {
   const { register, handleSubmit, reset } = useForm();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
   const onSubmit = async (data) => {
     if (!user) return alert("You must be logged in to submit a review.");
-console.log(user);
+    console.log(user);
 
     try {
       await axiosSecure.post("/reviews", {
         mealId,
         mealName,
-        userImage:user.photoURL,
+        userImage: user.photoURL,
         userName: user.displayName,
-        userEmail:user.email,
+        userEmail: user.email,
         rating: Number(data.rating),
         comment: data.comment,
       });
@@ -31,7 +31,6 @@ console.log(user);
 
       // Close form if onClose provided
       if (onClose) onClose();
-
     } catch (err) {
       console.error(err);
       toast("Failed to submit review");
@@ -61,7 +60,7 @@ console.log(user);
       <div className="flex gap-3">
         <button
           type="submit"
-          className="px-4 py-2 bg-lime-500 text-white rounded-lg hover:bg-lime-600"
+          className="px-4 py-2 bg-[#2b7fff] text-white rounded-lg hover:bg-lime-600"
         >
           Submit
         </button>

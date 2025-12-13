@@ -1,60 +1,66 @@
-import { Link, useLocation, useNavigate } from 'react-router'
-import { FcGoogle } from 'react-icons/fc'
-import useAuth from '../../hooks/useAuth'
-import { toast } from 'react-hot-toast'
-import { TbFidgetSpinner } from 'react-icons/tb'
-import { useForm } from 'react-hook-form'
-import { imageUpload, saveOrUpdateUser } from '../../utils'
+import { Link, useLocation, useNavigate } from "react-router";
+import { FcGoogle } from "react-icons/fc";
+import useAuth from "../../hooks/useAuth";
+import { toast } from "react-hot-toast";
+import { TbFidgetSpinner } from "react-icons/tb";
+import { useForm } from "react-hook-form";
+import { imageUpload, saveOrUpdateUser } from "../../utils";
 
 const SignUp = () => {
-  const { createUser, updateUserProfile, signInWithGoogle, loading } = useAuth()
-  const navigate = useNavigate()
-  const location = useLocation()
-  const from = location.state || '/'
+  const { createUser, updateUserProfile, signInWithGoogle, loading } =
+    useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state || "/";
 
-  const { register, handleSubmit, watch, formState: { errors } } = useForm()
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
-  const onSubmit = async data => {
+  const onSubmit = async (data) => {
     try {
-      const imageFile = data.image[0]
-      const imageURL = await imageUpload(imageFile)
+      const imageFile = data.image[0];
+      const imageURL = await imageUpload(imageFile);
 
-      await createUser(data.email, data.password)
+      await createUser(data.email, data.password);
 
       await saveOrUpdateUser({
         name: data.name,
         email: data.email,
         image: imageURL,
-        address: data.address
-      })
+        address: data.address,
+      });
 
-      await updateUserProfile(data.name, imageURL)
+      await updateUserProfile(data.name, imageURL);
 
-      navigate(from, { replace: true })
-      toast.success('Signup Successful')
+      navigate(from, { replace: true });
+      toast.success("Signup Successful");
     } catch (err) {
-      console.error(err)
-      toast.error(err?.message)
+      console.error(err);
+      toast.error(err?.message);
     }
-  }
+  };
 
   const handleGoogleSignIn = async () => {
     try {
-      const { user } = await signInWithGoogle()
+      const { user } = await signInWithGoogle();
       await saveOrUpdateUser({
         name: user?.displayName,
         email: user?.email,
         image: user?.photoURL,
-        address: ''
-      })
+        address: "",
+      });
 
-      navigate(from, { replace: true })
-      toast.success('Signup Successful')
+      navigate(from, { replace: true });
+      toast.success("Signup Successful");
     } catch (err) {
-      console.error(err)
-      toast.error(err?.message)
+      console.error(err);
+      toast.error(err?.message);
     }
-  }
+  };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-50">
@@ -65,7 +71,6 @@ const SignUp = () => {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-
           {/* Name */}
           <div className="flex flex-col">
             <label className="text-gray-700 mb-1">Name</label>
@@ -73,9 +78,16 @@ const SignUp = () => {
               type="text"
               placeholder="Your Name"
               className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-lime-400 focus:outline-none bg-gray-100"
-              {...register('name', { required: 'Name is required', maxLength: 20 })}
+              {...register("name", {
+                required: "Name is required",
+                maxLength: 20,
+              })}
             />
-            {errors.name && <span className="text-xs text-red-500 mt-1">{errors.name.message}</span>}
+            {errors.name && (
+              <span className="text-xs text-red-500 mt-1">
+                {errors.name.message}
+              </span>
+            )}
           </div>
 
           {/* Address */}
@@ -85,9 +97,13 @@ const SignUp = () => {
               type="text"
               placeholder="Your Address"
               className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-lime-400 bg-gray-100"
-              {...register('address', { required: 'Address is required' })}
+              {...register("address", { required: "Address is required" })}
             />
-            {errors.address && <span className="text-xs text-red-500 mt-1">{errors.address.message}</span>}
+            {errors.address && (
+              <span className="text-xs text-red-500 mt-1">
+                {errors.address.message}
+              </span>
+            )}
           </div>
 
           {/* Profile Image */}
@@ -97,10 +113,16 @@ const SignUp = () => {
               type="file"
               accept="image/*"
               className="cursor-pointer px-4 py-2 rounded-lg border-2 border-dashed border-lime-300 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-lime-400"
-              {...register('image', { required: 'Profile image is required' })}
+              {...register("image", { required: "Profile image is required" })}
             />
-            {errors.image && <span className="text-xs text-red-500 mt-1">{errors.image.message}</span>}
-            <p className="text-xs text-gray-400 mt-1">PNG, JPG or JPEG (max 2MB)</p>
+            {errors.image && (
+              <span className="text-xs text-red-500 mt-1">
+                {errors.image.message}
+              </span>
+            )}
+            <p className="text-xs text-gray-400 mt-1">
+              PNG, JPG or JPEG (max 2MB)
+            </p>
           </div>
 
           {/* Email */}
@@ -110,15 +132,19 @@ const SignUp = () => {
               type="email"
               placeholder="Your Email"
               className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-lime-400 focus:outline-none bg-gray-100"
-              {...register('email', {
-                required: 'Email is required',
+              {...register("email", {
+                required: "Email is required",
                 pattern: {
                   value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                  message: 'Invalid email'
+                  message: "Invalid email",
                 },
               })}
             />
-            {errors.email && <span className="text-xs text-red-500 mt-1">{errors.email.message}</span>}
+            {errors.email && (
+              <span className="text-xs text-red-500 mt-1">
+                {errors.email.message}
+              </span>
+            )}
           </div>
 
           {/* Password */}
@@ -129,9 +155,16 @@ const SignUp = () => {
               placeholder="******"
               autoComplete="new-password"
               className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-lime-400 focus:outline-none bg-gray-100"
-              {...register('password', { required: 'Password is required', minLength: 6 })}
+              {...register("password", {
+                required: "Password is required",
+                minLength: 6,
+              })}
             />
-            {errors.password && <span className="text-xs text-red-500 mt-1">{errors.password.message}</span>}
+            {errors.password && (
+              <span className="text-xs text-red-500 mt-1">
+                {errors.password.message}
+              </span>
+            )}
           </div>
 
           {/* Confirm Password */}
@@ -141,22 +174,28 @@ const SignUp = () => {
               type="password"
               placeholder="******"
               className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-lime-400 bg-gray-100"
-              {...register('confirmPassword', {
-                required: 'Confirm password is required',
-                validate: value =>
-                  value === watch('password') || 'Passwords do not match'
+              {...register("confirmPassword", {
+                required: "Confirm password is required",
+                validate: (value) =>
+                  value === watch("password") || "Passwords do not match",
               })}
             />
             {errors.confirmPassword && (
-              <span className="text-xs text-red-500 mt-1">{errors.confirmPassword.message}</span>
+              <span className="text-xs text-red-500 mt-1">
+                {errors.confirmPassword.message}
+              </span>
             )}
           </div>
 
           <button
             type="submit"
-            className="w-full bg-lime-500 text-white py-3 rounded-lg font-semibold hover:bg-lime-600 transition"
+            className="w-full bg-[#2b7fff] text-white py-3 rounded-lg font-semibold hover:bg-lime-600 transition"
           >
-            {loading ? <TbFidgetSpinner className="animate-spin m-auto" /> : 'Sign Up'}
+            {loading ? (
+              <TbFidgetSpinner className="animate-spin m-auto" />
+            ) : (
+              "Sign Up"
+            )}
           </button>
         </form>
 
@@ -173,18 +212,23 @@ const SignUp = () => {
           className="flex items-center justify-center space-x-3 border border-gray-300 py-2 rounded-lg cursor-pointer hover:bg-gray-100 transition"
         >
           <FcGoogle size={28} />
-          <span className="font-medium text-gray-700">Continue with Google</span>
+          <span className="font-medium text-gray-700">
+            Continue with Google
+          </span>
         </div>
 
         <p className="text-center text-gray-400 text-sm mt-4">
-          Already have an account?{' '}
-          <Link to="/login" className="text-lime-500 font-medium hover:underline">
+          Already have an account?{" "}
+          <Link
+            to="/login"
+            className="text-lime-500 font-medium hover:underline"
+          >
             Login
           </Link>
         </p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;

@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 const ManageRequest = () => {
   const axiosSecure = useAxiosSecure();
 
-  // Fetch all requests
+
   const { data: requests = [], isLoading, refetch } = useQuery({
     queryKey: ["role-requests"],
     queryFn: async () => {
@@ -15,7 +15,7 @@ const ManageRequest = () => {
     },
   });
 
-  // Accept request mutation
+
   const acceptMutation = useMutation({
     mutationFn: async (request) => {
       const res = await axiosSecure.patch(`/role-requests/accept/${request._id}`);
@@ -28,7 +28,7 @@ const ManageRequest = () => {
     onError: () => toast.error("Something went wrong"),
   });
 
-  // Reject request mutation
+
   const rejectMutation = useMutation({
     mutationFn: async (request) => {
       const res = await axiosSecure.patch(`/role-requests/reject/${request._id}`);
@@ -44,6 +44,10 @@ const ManageRequest = () => {
   if (isLoading) return <LoadingSpinner />;
 
   return (
+     <div className="p-6 space-y-6">
+      <h1 className="text-3xl font-bold mb-6">Manage Request</h1>
+
+  
     <div className="container mx-auto px-4 sm:px-8">
       <div className="py-8">
         <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
@@ -106,6 +110,7 @@ const ManageRequest = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

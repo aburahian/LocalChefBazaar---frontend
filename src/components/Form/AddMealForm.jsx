@@ -61,7 +61,7 @@ const AddMealForm = () => {
         foodName: data.foodName,
         chefName: user?.displayName,
         foodImage: imageUrl,
-        category:data.category,
+        category: data.category,
         price: Number(data.price),
         rating: Number(data.rating),
         ingredients: data.ingredients.map((i) => i.name),
@@ -142,6 +142,7 @@ const AddMealForm = () => {
               <option value="breakfast">Breakfast</option>
               <option value="lunch">Lunch</option>
               <option value="dinner">Dinner</option>
+              <option value="dessert">Dessert</option>
             </select>
 
             {errors.category && (
@@ -184,7 +185,7 @@ const AddMealForm = () => {
           <button
             type="button"
             onClick={() => append({ name: "" })}
-            className="px-4 py-2 bg-lime-500 text-white rounded-lg hover:bg-lime-600 transition w-max"
+            className="px-4 py-2 bg-[#2b7fff] text-white rounded-lg hover:bg-lime-600 transition w-max"
           >
             Add Ingredient
           </button>
@@ -238,7 +239,7 @@ const AddMealForm = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full py-3 bg-lime-500 text-white font-semibold rounded-xl hover:bg-lime-600 transition flex justify-center items-center gap-2"
+          className="w-full py-3 bg-[#2b7fff] text-white font-semibold rounded-xl hover:bg-lime-600 transition flex justify-center items-center gap-2"
         >
           {isLoading && <TbFidgetSpinner className="animate-spin" />}
           {isLoading ? "Submitting..." : "Add Meal"}
