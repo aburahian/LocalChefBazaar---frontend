@@ -12,7 +12,7 @@ const Card = ({ meal }) => {
     price,
     rating,
     chefName,
-    chefId,
+
     delivery_area,
   } = meal || {};
 
@@ -24,37 +24,49 @@ const Card = ({ meal }) => {
   };
 
   return (
-    <div className="flex flex-col justify-between shadow-xl p-4 rounded-xl bg-white group">
+    <div className="flex flex-col justify-between h-full bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden group">
       {/* Image */}
-      <div className="aspect-square w-full overflow-hidden rounded-xl mb-3">
+      <div className="relative aspect-square w-full overflow-hidden">
         <img
           src={foodImage}
-          className="object-cover w-full h-full group-hover:scale-110 transition"
+          className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500 ease-out"
           alt="Meal"
         />
+        <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-semibold text-gray-800 shadow-sm">
+          ⭐ {rating}
+        </div>
       </div>
 
-      {/* Text */}
-      <h2 className="font-bold text-xl">{foodName}</h2>
+      {/* Content */}
+      <div className="p-5 flex flex-col grow">
+        <div className="grow space-y-2">
+          <div className="flex justify-between items-start">
+            <h2 className="font-bold text-lg text-gray-800 line-clamp-2 leading-tight group-hover:text-primary transition-colors">
+              {foodName}
+            </h2>
+            <span className="text-lg font-bold text-primary shrink-0">${price}</span>
+          </div>
 
-      <p className="text-gray-600">
-        <span className="font-semibold">Chef:</span> {chefName}
-      </p>
-      <p className="text-gray-600">
-        <span className="font-semibold">Chef ID:</span> {chefId}
-      </p>
+          <div className="text-sm text-gray-500 space-y-1 pt-2">
+            <p className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-gray-400"></span>
+              By <span className="font-medium text-gray-700">{chefName}</span>
+            </p>
+            <p className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-gray-400"></span>
+              Area: {delivery_area}
+            </p>
+          </div>
+        </div>
 
-      <p className="text-gray-700 font-medium">Price: ${price}</p>
-      <p className="text-gray-700">Rating: ⭐ {rating}</p>
-      <p className="text-gray-700">Delivery Area: {delivery_area}</p>
-
-      {/* See Details */}
-      <button
-        onClick={handleDetails}
-        className="mt-3 w-full py-2 bg-[#FF6B35] text-white rounded-lg hover:bg-[#FF4C29] transition"
-      >
-        See Details
-      </button>
+        {/* See Details */}
+        <button
+          onClick={handleDetails}
+          className="mt-6 w-full py-2.5 bg-linear-to-r from-[#FF6B35] to-[#FF4C29] text-white rounded-xl font-medium shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all duration-300"
+        >
+          View Details
+        </button>
+      </div>
     </div>
   );
 };
