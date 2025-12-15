@@ -25,7 +25,7 @@ const PlatformStatistics = () => {
     queryKey: ["platformStats"],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `${import.meta.env.VITE_API_URL}/stats`
+        `$/stats`
       );
       return res.data;
     },
