@@ -7,10 +7,11 @@ import LoadingSpinner from "../Shared/LoadingSpinner";
 import ErrorPage from "../../pages/ErrorPage";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { TbFidgetSpinner } from "react-icons/tb";
+import useStatus from "../../hooks/useStatus";
 
 const AddMealForm = () => {
   const { user } = useAuth();
-
+  const [status, isRoleLoading] = useStatus();
   const axiosSecure = useAxiosSecure();
 
   const {
@@ -237,13 +238,22 @@ const AddMealForm = () => {
           )}
         </div>
         {/* Submit Button */}
-        <button
-          type="submit"
-          className="w-full py-3 bg-[#FF6B35] text-white font-semibold rounded-xl hover:bg-[#FFF8F0] transition flex justify-center items-center gap-2"
-        >
-          {isLoading && <TbFidgetSpinner className="animate-spin" />}
-          {isLoading ? "Submitting..." : "Add Meal"}
-        </button>
+        {status === "fraud" ? (
+          <button
+            type="submit"
+            className="w-full py-3 bg-[#FF6B35] disabled text-white font-semibold rounded-xl hover:bg-[#FFF8F0] transition flex justify-center items-center gap-2"
+          >
+            Add Meal
+          </button>
+        ) : (
+          <button
+            type="submit"
+            className="w-full py-3 bg-[#FF6B35] text-white font-semibold rounded-xl hover:bg-[#FFF8F0] transition flex justify-center items-center gap-2"
+          >
+            {isLoading && <TbFidgetSpinner className="animate-spin" />}
+            {isLoading ? "Submitting..." : "Add Meal"}
+          </button>
+        )}
       </form>
     </div>
   );

@@ -52,7 +52,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-orange-100 flex justify-center items-center py-10 px-4">
+    <div className="min-h-screen bg-linear-to-br from-orange-50 to-orange-100 flex justify-center items-center py-10 px-4">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -60,7 +60,7 @@ const Profile = () => {
         className="relative w-full max-w-2xl bg-white/80 backdrop-blur-md shadow-2xl rounded-3xl overflow-hidden border border-white/50"
       >
         {/* Header / Cover */}
-        <div className="relative h-48 bg-gradient-to-r from-orange-400 to-orange-600 overflow-hidden">
+        <div className="relative h-48 bg-linear-to-r from-orange-400 to-orange-600 overflow-hidden">
           <img
             src={coverImg}
             alt="Cover"
@@ -161,7 +161,7 @@ const Profile = () => {
                   <button
                     disabled={requestLoading}
                     onClick={() => handleRequest("chef")}
-                    className="flex-1 group bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-orange-500/30 transition-all duration-300 transform hover:-translate-y-1 font-semibold flex items-center justify-center gap-2"
+                    className="flex-1 group bg-linear-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-orange-500/30 transition-all duration-300 transform hover:-translate-y-1 font-semibold flex items-center justify-center gap-2"
                   >
                     <FaUtensils className="group-hover:rotate-12 transition-transform" />
                     Request to be Chef
@@ -169,7 +169,7 @@ const Profile = () => {
                   <button
                     disabled={requestLoading}
                     onClick={() => handleRequest("admin")}
-                    className="flex-1 group bg-gradient-to-r from-gray-700 to-black text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-gray-500/30 transition-all duration-300 transform hover:-translate-y-1 font-semibold flex items-center justify-center gap-2"
+                    className="flex-1 group bg-linear-to-r from-gray-700 to-black text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-gray-500/30 transition-all duration-300 transform hover:-translate-y-1 font-semibold flex items-center justify-center gap-2"
                   >
                     <FaUserShield className="group-hover:scale-110 transition-transform" />
                     Request to be Admin

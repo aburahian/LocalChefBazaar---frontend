@@ -11,13 +11,14 @@ import useAuth from "../../hooks/useAuth";
 
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import ReviewForm from "../../components/Form/ReviewForm";
+import useStatus from "../../hooks/useStatus";
 
 const MealDetails = () => {
   const { user } = useAuth();
 
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
-
+  const [status, isRoleLoading] = useStatus();
   const [isOpen, setIsOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [showReviewForm, setShowReviewForm] = useState(false);
@@ -133,7 +134,11 @@ const MealDetails = () => {
           </button>
 
           {/* ORDER NOW */}
-          <Button onClick={() => setIsOpen(true)} label="Order Now" />
+          {status === "fraud" ? (
+            <Button disabled label="Order Now" />
+          ) : (
+            <Button onClick={() => setIsOpen(true)} label="Order Now" />
+          )}
 
           {/* PURCHASE MODAL */}
           <PurchaseModal meal={meal} closeModal={closeModal} isOpen={isOpen} />

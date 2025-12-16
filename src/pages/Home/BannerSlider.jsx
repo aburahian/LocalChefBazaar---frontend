@@ -12,25 +12,25 @@ import { useGSAP } from "@gsap/react";
 const bannerData = [
   {
     id: 1,
-    image: "https://i.ibb.co/4t6xZ7s/banner1.jpg",
+    image: "https://i.ibb.co.com/ccH0rs1X/delicious-food-delivery-top-view-23-2149182210.jpg",
     title: "Delicious Meals Delivered",
     subtitle: "Fresh & Tasty Food Every Day",
   },
   {
     id: 2,
-    image: "https://i.ibb.co/5R3pP9D/banner2.jpg",
+    image: "https://i.ibb.co.com/wN8yf5N3/af5ed7e6-0d0f-4585-b30f-7df674f314c1.jpg",
     title: "Your Favorite Dishes",
     subtitle: "Order Now & Enjoy",
   },
   {
     id: 3,
-    image: "https://i.ibb.co/Y42Ddf94/banner3.jpg",
+    image: "https://i.ibb.co.com/mCynqNmH/66066981f2d884346df02cbc-deliver-packages-faster-HERO.webp",
     title: "Fast Delivery",
     subtitle: "Hot & Fresh at Your Doorstep",
   },
   {
     id: 4,
-    image: "https://i.ibb.co/XYZ/banner4.jpg",
+    image: "https://i.ibb.co.com/qYxvCrdF/images-q-tbn-ANd9-Gc-TMq-Si-F73jv-VCGHWjuu9u-CYwj4-Wt-Tb-O8-LZIDw-s.jpg",
     title: "Tasty Breakfasts",
     subtitle: "Start Your Day Right",
   },
@@ -48,19 +48,19 @@ const bannerData = [
   },
   {
     id: 7,
-    image: "https://i.ibb.co/XYZ/banner7.jpg",
+    image: "https://i.ibb.co.com/jPYk3zMv/desserts-update.jpg",
     title: "Sweet Desserts",
     subtitle: "Treat Yourself Today",
   },
   {
     id: 8,
-    image: "https://i.ibb.co/XYZ/banner8.jpg",
+    image: "https://i.ibb.co.com/7x2cWrj5/beat-the-heat-with-refreshing-summer-drink-ideas-852782.jpg",
     title: "Refreshing Drinks",
     subtitle: "Cool & Energizing",
   },
   {
     id: 9,
-    image: "https://i.ibb.co/XYZ/banner9.jpg",
+    image: "https://i.ibb.co.com/YBhGNK4B/Recipes-2400-Pepperoni-Cup-Crips-Sweet-Spicy-Basil-Pep-Hot-Honey.jpg",
     title: "Hot Pizzas",
     subtitle: "Cheesy & Delicious",
   },
@@ -94,7 +94,7 @@ const BannerSlider = () => {
         {bannerData.map((banner) => (
           <SwiperSlide key={banner.id}>
             <div
-              className="w-full h-full relative"
+              className="w-full h-full bg-cover bg-center bg-no-repeat relative"
               style={{
                 backgroundImage: `url(${banner.image})`,
                 backgroundSize: "cover",
