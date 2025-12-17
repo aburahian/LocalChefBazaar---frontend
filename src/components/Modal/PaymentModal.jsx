@@ -24,7 +24,7 @@ const PaymentModal = ({ order, onClose }) => {
 
     const res = await axiosSecure.post("/create-checkout-session", paymentInfo);
 
-    console.log(res.data);
+
 
     window.location.href = res.data.url;
     setLoading(false);

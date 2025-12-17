@@ -53,7 +53,7 @@ const AddMealForm = () => {
   });
   const onSubmit = async (data) => {
     try {
-      console.log(data.foodImage[0]);
+      
 
       const imageFile = data.foodImage[0];
       const imageUrl = await imageUpload(imageFile);

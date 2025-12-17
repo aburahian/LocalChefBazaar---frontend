@@ -18,7 +18,7 @@ const ChefRequests = () => {
       return result.data;
     },
   });
-  console.log(requests);
+
 
   if (isLoading) return <LoadingSpinner />;
   return (

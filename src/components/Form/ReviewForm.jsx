@@ -10,7 +10,7 @@ const ReviewForm = ({ mealId, mealName, refetch, onClose }) => {
 
   const onSubmit = async (data) => {
     if (!user) return alert("You must be logged in to submit a review.");
-    console.log(user);
+  
 
     try {
       await axiosSecure.post("/reviews", {

@@ -1,7 +1,7 @@
 import { FaTrash, FaEdit } from "react-icons/fa";
 
 const MealCard = ({ meal, onDelete, onUpdate }) => {
-  console.log(meal);
+
 
   return (
     <div className="bg-white shadow rounded-xl p-4 flex flex-col gap-3 justify-between">

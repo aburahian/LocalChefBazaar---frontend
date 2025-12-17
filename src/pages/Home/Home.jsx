@@ -12,22 +12,25 @@ gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
   const wrapperRef = useRef(null);
 
-  useGSAP(() => {
-    const sections = gsap.utils.toArray('section');
-    sections.forEach((section) => {
-      gsap.from(section, {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        scrollTrigger: {
-          trigger: section,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse",
-        }
+  useGSAP(
+    () => {
+      const sections = gsap.utils.toArray("section");
+      sections.forEach((section) => {
+        gsap.from(section, {
+          opacity: 0,
+          y: 50,
+          duration: 1,
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse",
+          },
+        });
       });
-    });
-  }, { scope: wrapperRef });
+    },
+    { scope: wrapperRef }
+  );
 
   return (
     <div ref={wrapperRef} className="space-y-16 pb-12 overflow-hidden">
@@ -43,7 +46,9 @@ const Home = () => {
             <h1 className="text-3xl md:text-5xl font-bold text-gray-800 tracking-tight">
               Latest Meals
             </h1>
-            <p className="text-gray-500 mt-2 text-lg">Freshly cooked by your neighbors</p>
+            <p className="text-gray-500 mt-2 text-lg">
+              Freshly cooked by your neighbors
+            </p>
           </div>
           <Link
             to="/meals"
@@ -55,7 +60,9 @@ const Home = () => {
 
         <LatestMeals />
       </section>
-
+      <section className="px-6 md:px-12 max-w-7xl mx-auto">
+        <WhyChooseUs />
+      </section>
       <section className="px-6 md:px-12 max-w-7xl mx-auto">
         <Reviews />
       </section>
