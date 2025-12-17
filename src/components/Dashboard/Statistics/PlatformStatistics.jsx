@@ -25,7 +25,7 @@ const PlatformStatistics = () => {
     queryKey: ["platformStats"],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `$/stats`
+        `/stats`
       );
       return res.data;
     },

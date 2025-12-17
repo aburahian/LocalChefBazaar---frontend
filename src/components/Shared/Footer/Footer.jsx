@@ -1,3 +1,10 @@
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaTwitter,
+  FaYoutube,
+} from "react-icons/fa";
+
 const Footer = () => {
   return (
     <footer className="bg-neutral-900 text-gray-300 py-10 px-6 border-t border-neutral-800">
@@ -14,18 +21,30 @@ const Footer = () => {
         {/* Socials */}
         <div>
           <h3 className="text-lg font-semibold text-white mb-3">Follow Us</h3>
-          <div className="flex gap-4 text-xl">
-            <a href="#" className="hover:text-green-400 duration-200">
-              <i className="fab fa-facebook"></i>
+          <div className="flex gap-4">
+            <a
+              href="#"
+              className="p-3 rounded-full bg-neutral-800 hover:bg-green-500 hover:text-black transition"
+            >
+              <FaFacebookF />
             </a>
-            <a href="#" className="hover:text-green-400 duration-200">
-              <i className="fab fa-instagram"></i>
+            <a
+              href="#"
+              className="p-3 rounded-full bg-neutral-800 hover:bg-green-500 hover:text-black transition"
+            >
+              <FaInstagram />
             </a>
-            <a href="#" className="hover:text-green-400 duration-200">
-              <i className="fab fa-twitter"></i>
+            <a
+              href="#"
+              className="p-3 rounded-full bg-neutral-800 hover:bg-green-500 hover:text-black transition"
+            >
+              <FaTwitter />
             </a>
-            <a href="#" className="hover:text-green-400 duration-200">
-              <i className="fab fa-youtube"></i>
+            <a
+              href="#"
+              className="p-3 rounded-full bg-neutral-800 hover:bg-green-500 hover:text-black transition"
+            >
+              <FaYoutube />
             </a>
           </div>
         </div>
