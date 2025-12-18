@@ -66,6 +66,34 @@ const Navbar = () => {
                   </span>
                 )}
               </NavLink>
+                <NavLink to="/about" className="relative group py-2">
+                {({ isActive }) => (
+                  <span
+                    className={`nav-link text-sm font-medium tracking-wide transition-all duration-300 hover:text-primary ${isActive ? 'text-primary' : 'text-gray-600'
+                      }`}
+                  >
+                    About
+                    <span
+                      className={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                        }`}
+                    ></span>
+                  </span>
+                )}
+              </NavLink>
+              <NavLink to="/contact" className="relative group py-2">
+                {({ isActive }) => (
+                  <span
+                    className={`nav-link text-sm font-medium tracking-wide transition-all duration-300 hover:text-primary ${isActive ? 'text-primary' : 'text-gray-600'
+                      }`}
+                  >
+                    Contact Us
+                    <span
+                      className={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                        }`}
+                    ></span>
+                  </span>
+                )}
+              </NavLink>
             </div>
 
             {/* User Menu / Auth Buttons */}
@@ -116,6 +144,20 @@ const Navbar = () => {
                     onClick={() => setIsOpen(false)}
                   >
                     Meals
+                  </Link>
+                  <Link
+                    to='/about'
+                    className='block md:hidden px-4 py-3 hover:bg-neutral-50 transition font-medium'
+                    onClick={() => setIsOpen(false)}
+                  >
+                    About
+                  </Link>
+                  <Link
+                    to='/contact'
+                    className='block md:hidden px-4 py-3 hover:bg-neutral-50 transition font-medium'
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Contact Us
                   </Link>
 
                   {user ? (

@@ -27,6 +27,8 @@ import OrderRequests from "../pages/Dashboard/chef/OrderRequests";
 import FavoriteMeal from "../pages/Dashboard/Customer/FavoriteMeal";
 import MyReview from "../pages/Dashboard/Customer/MyReview";
 import Meals from "../pages/Meals/Meals";
+import About from "../pages/About/About";
+import Contact from "../pages/Contact/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +51,13 @@ export const router = createBrowserRouter([
       {
         path: "/payment-success",
         element: <PaymentSuccess />,
+      },{
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
     ],
   },

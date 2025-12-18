@@ -108,7 +108,7 @@ const Login = () => {
         </form>
 
         <div className="mt-4 text-center">
-          <button className="text-xs text-gray-500 hover:text-lime-500 underline">
+          <button className="text-xs text-gray-500 hover:text-[#FF6B35] underline">
             Forgot password?
           </button>
         </div>
@@ -129,7 +129,7 @@ const Login = () => {
 
         <p className="text-center text-gray-400 text-sm mt-4">
           Don&apos;t have an account yet?{" "}
-          <Link to="/signup" className="text-lime-500 font-medium hover:underline">
+          <Link to="/signup" className="text-[#FF6B35] font-medium hover:underline">
             Sign up
           </Link>
         </p>

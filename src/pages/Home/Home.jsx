@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
+import WhyChooseUs from "./WhyChooseUs";
 
 gsap.registerPlugin(ScrollTrigger);
 

@@ -1,16 +1,41 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# LocalChefBazaar — Marketplace for Local Home-Cooked Meals
 
-Currently, two official plugins are available:
+LocalChefBazaar is a modern online platform that connects home cooks with people looking for fresh, homemade food. Customers can explore daily menus, check a chef’s availability, place orders, make secure payments, and track their orders in real time.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Live URL:** [[Insert Live Link Here](https://localbazarmeal-abu-b549e6.netlify.app/)]
 
-## React Compiler
+## Key Features
+- **User Roles**: Admin, Chef, and Customer roles with distinct dashboards and permissions.
+- **Authentication**: Secure JWT-based authentication for private routes.
+- **Payment Integration**: Stripe integration for secure and seamless payments.
+- **Real-time Order Tracking**: Status updates for orders (Pending, Accepted, Delivered).
+- **Review System**: Customers can leave ratings and reviews for meals.
+- **Favorites**: Users can save their favorite meals.
+- **Chef & Admin Requests**: Workflow for users to request to become Chefs or Admins.
+- **Platform Statistics**: Visual charts for admins to monitor platform performance.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
+- **Frontend**: React, Tailwind CSS, Framer Motion/GSAP, TanStack Query, React Hook Form.
+- **Backend**: Node.js, Express.js, MongoDB, Firebase Admin.
+- **Payment**: Stripe.
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+- Node.js
+- MongoDB URI
+- Firebase Service Account Key
+- Stripe Secret Key
+
+### Client Side
+1. `cd frontend`
+2. `npm install`
+3. Create `.env` file with Firebase configuration.
+4. `npm run dev`
+
+### Server Side
+1. `cd backend`
+2. `npm install`
+3. Create `.env` file with `MONGODB_URI`, `STRIPE_SECRET_KEY`, `ACCESS_TOKEN_SECRET` and `FB_SERVICE_KEY`.
+4. `npm start`

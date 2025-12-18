@@ -132,7 +132,7 @@ const SignUp = () => {
               type="password"
               placeholder="******"
               autoComplete="new-password"
-              className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-lime-400 bg-[#FFF8F0]"
+              className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2  bg-[#FFF8F0]"
               {...register("password", { required: "Password is required", minLength: 6 })}
             />
             {errors.password && <span className="text-xs text-red-500 mt-1">{errors.password.message}</span>}
@@ -144,7 +144,7 @@ const SignUp = () => {
             <input
               type="password"
               placeholder="******"
-              className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-lime-400 bg-[#FFF8F0]"
+              className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2  bg-[#FFF8F0]"
               {...register("confirmPassword", {
                 required: "Confirm password is required",
                 validate: (value) => value === watch("password") || "Passwords do not match",
@@ -179,7 +179,7 @@ const SignUp = () => {
 
         <p className="text-center text-gray-400 text-sm mt-4">
           Already have an account?{" "}
-          <Link to="/login" className="text-lime-500 font-medium hover:underline">
+          <Link to="/login" className="text-[#FF6B35] font-medium hover:underline">
             Login
           </Link>
         </p>

@@ -4,7 +4,6 @@ import useAuth from "../../hooks/useAuth";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import LoadingSpinner from "../Shared/LoadingSpinner";
-import ErrorPage from "../../pages/ErrorPage";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { TbFidgetSpinner } from "react-icons/tb";
 import useStatus from "../../hooks/useStatus";
@@ -38,11 +37,9 @@ const AddMealForm = () => {
       toast.success("Meal added successfully!");
       reset();
     },
-    onError: (err) => {
-      console.error(err);
-      toast.error("Failed to add meal");
-    },
+    onError: () => toast.error("Failed to add meal"),
   });
+
   const { data: chefUser } = useQuery({
     queryKey: ["chefUser", user?.email],
     queryFn: async () => {
@@ -51,10 +48,9 @@ const AddMealForm = () => {
       return res.data;
     },
   });
+
   const onSubmit = async (data) => {
     try {
-      
-
       const imageFile = data.foodImage[0];
       const imageUrl = await imageUpload(imageFile);
 
@@ -82,7 +78,7 @@ const AddMealForm = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto my-8 p-8 bg-white rounded-2xl shadow-lg">
+    <div className="max-w-4xl mx-auto my-8 p-6 sm:p-8 bg-white rounded-2xl shadow-lg">
       <h2 className="text-2xl font-bold text-gray-800 mb-6">Add New Meal</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* Food Name */}
@@ -116,8 +112,8 @@ const AddMealForm = () => {
           )}
         </div>
 
-        {/* Price & Rating */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Price & Category & Rating */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <div className="flex flex-col">
             <label className="mb-2 font-medium text-gray-700">Price ($)</label>
             <input
@@ -132,7 +128,7 @@ const AddMealForm = () => {
               </span>
             )}
           </div>
-          {/* Category */}
+
           <div className="flex flex-col">
             <label className="mb-2 font-medium text-gray-700">Category</label>
             <select
@@ -145,7 +141,6 @@ const AddMealForm = () => {
               <option value="dinner">Dinner</option>
               <option value="dessert">Dessert</option>
             </select>
-
             {errors.category && (
               <span className="text-red-500 text-sm mt-1">
                 Category is required
@@ -168,7 +163,10 @@ const AddMealForm = () => {
         <div className="flex flex-col">
           <label className="mb-2 font-medium text-gray-700">Ingredients</label>
           {fields.map((field, index) => (
-            <div key={field.id} className="flex gap-2 mb-2">
+            <div
+              key={field.id}
+              className="flex flex-col sm:flex-row gap-2 mb-2"
+            >
               <input
                 {...register(`ingredients.${index}.name`, { required: true })}
                 placeholder="Ingredient"
@@ -177,7 +175,7 @@ const AddMealForm = () => {
               <button
                 type="button"
                 onClick={() => remove(index)}
-                className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+                className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition w-full sm:w-auto"
               >
                 Remove
               </button>
@@ -193,7 +191,7 @@ const AddMealForm = () => {
         </div>
 
         {/* Estimated Delivery & Experience */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="flex flex-col">
             <label className="mb-2 font-medium text-gray-700">
               Estimated Delivery Time
@@ -208,6 +206,7 @@ const AddMealForm = () => {
               <span className="text-red-500 text-sm mt-1">Required</span>
             )}
           </div>
+
           <div className="flex flex-col">
             <label className="mb-2 font-medium text-gray-700">
               Chef Experience
@@ -223,6 +222,8 @@ const AddMealForm = () => {
             )}
           </div>
         </div>
+
+        {/* Delivery Area */}
         <div className="flex flex-col">
           <label className="mb-2 font-medium text-gray-700">
             Delivery Area
@@ -237,18 +238,18 @@ const AddMealForm = () => {
             <span className="text-red-500 text-sm mt-1">Required</span>
           )}
         </div>
-        {/* Submit Button */}
+
         {status === "fraud" ? (
           <button
             type="submit"
-            className="w-full py-3 bg-[#FF6B35] disabled text-white font-semibold rounded-xl hover:bg-[#FFF8F0] transition flex justify-center items-center gap-2"
+            className="w-full py-3 bg-[#FF6B35] disabled text-white font-semibold rounded-xl  transition flex justify-center items-center gap-2"
           >
             Add Meal
           </button>
         ) : (
           <button
             type="submit"
-            className="w-full py-3 bg-[#FF6B35] text-white font-semibold rounded-xl hover:bg-[#FFF8F0] transition flex justify-center items-center gap-2"
+            className="w-full py-3 bg-[#FF6B35] text-white font-semibold rounded-xl transition flex justify-center items-center gap-2"
           >
             {isLoading && <TbFidgetSpinner className="animate-spin" />}
             {isLoading ? "Submitting..." : "Add Meal"}

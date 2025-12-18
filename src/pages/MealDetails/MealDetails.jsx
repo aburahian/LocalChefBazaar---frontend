@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 
 import Container from "../../components/Shared/Container";
@@ -22,7 +22,7 @@ const MealDetails = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [showReviewForm, setShowReviewForm] = useState(false);
-
+  const navigate = useNavigate();
   const { data: meal = {}, isLoading } = useQuery({
     queryKey: ["meal", id],
     queryFn: async () => {
@@ -207,6 +207,12 @@ const MealDetails = () => {
           </div>
         </div>
       </div>
+      <button
+        onClick={() => navigate(-1)}
+        className="mb-4 w-fit flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-900 text-white hover:bg-gray-700 transition"
+      >
+        ← Back
+      </button>
     </Container>
   );
 };
