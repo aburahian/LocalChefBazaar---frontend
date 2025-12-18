@@ -23,7 +23,7 @@ const Reviews = () => {
   return (
     <div className='w-11/12 mx-auto my-24'>
       <div className='text-center mb-16'>
-        <h3 className="text-3xl font-bold my-8">Reviews</h3>
+        <h3 className="text-3xl font-bold my-8">Re<span className="text-primary">views</span></h3>
         <p className="max-w-2xl mx-auto">
           See what our customers are saying about their favorite meals. Honest feedback from real food lovers helps you choose the best dishes to try!
         </p>

@@ -32,7 +32,7 @@ const Navbar = () => {
             <Link to="/" className="flex items-center gap-2 group">
               <img src={logo} alt="logo" className="w-12 h-auto group-hover:scale-110 transition-transform duration-300" />
               <h1 className="hidden md:block font-bold text-xl text-gray-800 tracking-tight group-hover:text-primary transition-colors">
-                LocalChefBazaar
+                LocalChef<span className="text-primary">Bazaar</span>
               </h1>
             </Link>
 
@@ -96,7 +96,7 @@ const Navbar = () => {
               </NavLink>
             </div>
 
-            {/* User Menu / Auth Buttons */}
+       
             <div className='relative nav-link'>
               <div className='flex flex-row items-center gap-3'>
                 <div

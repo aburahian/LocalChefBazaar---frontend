@@ -60,7 +60,7 @@ const Footer = () => {
         {/* Branding */}
         <div>
           <h3 className="text-lg font-semibold text-white mb-3">
-            LocalChefBazaar
+            LocalChef<span className="text-primary">Bazaar</span>
           </h3>
           <p>Your local hub for healthy, homemade meals.</p>
         </div>

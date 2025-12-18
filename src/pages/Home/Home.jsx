@@ -45,7 +45,7 @@ const Home = () => {
         <div className="flex flex-col md:flex-row justify-between items-end mb-8 gap-4">
           <div>
             <h1 className="text-3xl md:text-5xl font-bold text-gray-800 tracking-tight">
-              Latest Meals
+              Latest <span className="text-primary">Meals</span>
             </h1>
             <p className="text-gray-500 mt-2 text-lg">
               Freshly cooked by your neighbors

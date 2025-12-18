@@ -28,7 +28,7 @@ const WhyChooseUs = () => {
     <div className="py-12 bg-[#FFF8F0] rounded-3xl">
       <div className="text-center mb-10">
         <h2 className="text-3xl md:text-5xl font-bold text-gray-800 tracking-tight mb-4">
-          Why Choose LocalChefBazaar?
+          Why <span className="text-primary">Choose Us?</span>
         </h2>
         <p className="text-gray-600 max-w-2xl mx-auto">
           We bring the warmth of home-cooked meals directly to your table while supporting the community.

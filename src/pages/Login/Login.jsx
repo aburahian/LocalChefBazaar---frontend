@@ -28,6 +28,7 @@ const Login = () => {
         name: user?.displayName,
         email: user?.email,
         image: user?.photoURL,
+        status: "active",
       });
       navigate(from, { replace: true });
       toast.success("Login Successful");

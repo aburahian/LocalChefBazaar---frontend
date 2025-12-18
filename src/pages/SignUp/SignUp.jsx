@@ -31,6 +31,7 @@ const SignUp = () => {
         email: data.email,
         image: imageURL,
         address: data.address,
+        status: "active",
       });
 
       await updateUserProfile(data.name, imageURL);

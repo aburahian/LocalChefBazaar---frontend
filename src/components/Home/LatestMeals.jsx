@@ -42,7 +42,7 @@ const LatestMeals = () => {
   return (
     <Container>
       {meals && meals.length > 0 ? (
-        <div ref={containerRef} className='pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8'>
+        <div ref={containerRef} className='pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-8'>
           {meals.map(meal => (
             <div key={meal._id} className="meal-card">
               <Card meal={meal} />
