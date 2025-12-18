@@ -3,7 +3,7 @@
 
 LocalChefBazaar is a modern online platform that connects home cooks with people looking for fresh, homemade food. Customers can explore daily menus, check a chef’s availability, place orders, make secure payments, and track their orders in real time.
 
-**Live URL:** [[Insert Live Link Here](https://localbazarmeal-abu-b549e6.netlify.app/)]
+**Live URL:** [[Live Link Here](https://localbazarmeal-abu-b549e6.netlify.app/)]
 
 ## Key Features
 - **User Roles**: Admin, Chef, and Customer roles with distinct dashboards and permissions.
