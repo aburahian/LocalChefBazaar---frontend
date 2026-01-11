@@ -61,22 +61,22 @@ const ManageRequest = () => {
               <table className="min-w-full leading-normal">
                 <thead>
                   <tr>
-                    <th className="px-5 py-3 bg-white border-b text-left text-sm font-semibold">
+                    <th className="px-5 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 text-left text-sm font-semibold text-gray-800 dark:text-gray-200">
                       Name
                     </th>
-                    <th className="px-5 py-3 bg-white border-b text-left text-sm font-semibold">
+                    <th className="px-5 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 text-left text-sm font-semibold text-gray-800 dark:text-gray-200">
                       Email
                     </th>
-                    <th className="px-5 py-3 bg-white border-b text-left text-sm font-semibold">
+                    <th className="px-5 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 text-left text-sm font-semibold text-gray-800 dark:text-gray-200">
                       Type
                     </th>
-                    <th className="px-5 py-3 bg-white border-b text-left text-sm font-semibold">
+                    <th className="px-5 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 text-left text-sm font-semibold text-gray-800 dark:text-gray-200">
                       Status
                     </th>
-                    <th className="px-5 py-3 bg-white border-b text-left text-sm font-semibold">
+                    <th className="px-5 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 text-left text-sm font-semibold text-gray-800 dark:text-gray-200">
                       Request Time
                     </th>
-                    <th className="px-5 py-3 bg-white border-b text-left text-sm font-semibold">
+                    <th className="px-5 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 text-left text-sm font-semibold text-gray-800 dark:text-gray-200">
                       Action
                     </th>
                   </tr>
@@ -88,31 +88,30 @@ const ManageRequest = () => {
 
                     return (
                       <tr key={req._id}>
-                        <td className="px-5 py-5 border-b bg-white text-sm">
-                          {req.userName}
+                        <td className="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
+                          <p className="text-gray-900 dark:text-gray-200">{req.userName}</p>
                         </td>
-                        <td className="px-5 py-5 border-b bg-white text-sm">
-                          {req.userEmail}
+                        <td className="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
+                          <p className="text-gray-900 dark:text-gray-200">{req.userEmail}</p>
                         </td>
-                        <td className="px-5 py-5 border-b bg-white text-sm capitalize">
-                          {req.requestType}
+                        <td className="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm capitalize">
+                          <p className="text-gray-900 dark:text-gray-200">{req.requestType}</p>
                         </td>
-                        <td className="px-5 py-5 border-b bg-white text-sm capitalize font-semibold">
-                          {req.requestStatus}
+                        <td className="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm capitalize font-semibold">
+                          <p className="text-gray-900 dark:text-gray-200">{req.requestStatus}</p>
                         </td>
-                        <td className="px-5 py-5 border-b bg-white text-sm">
-                          {new Date(req.requestTime).toLocaleString()}
+                        <td className="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
+                          <p className="text-gray-900 dark:text-gray-200">{new Date(req.requestTime).toLocaleString()}</p>
                         </td>
 
-                        <td className="px-5 py-5 border-b bg-white text-sm flex gap-2">
+                        <td className="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm flex gap-2">
                           <button
                             disabled={disabled}
                             onClick={() => acceptMutation.mutate(req)}
-                            className={`px-3 py-1 rounded text-white ${
-                              disabled
-                                ? "bg-gray-400 cursor-not-allowed"
-                                : "bg-green-600"
-                            }`}
+                            className={`px-3 py-1 rounded text-white transition-colors ${disabled
+                                ? "bg-gray-400 dark:bg-gray-600 cursor-not-allowed"
+                                : "bg-green-600 hover:bg-green-700"
+                              }`}
                           >
                             Accept
                           </button>
@@ -120,11 +119,10 @@ const ManageRequest = () => {
                           <button
                             disabled={disabled}
                             onClick={() => rejectMutation.mutate(req)}
-                            className={`px-3 py-1 rounded text-white ${
-                              disabled
-                                ? "bg-gray-400 cursor-not-allowed"
-                                : "bg-red-600"
-                            }`}
+                            className={`px-3 py-1 rounded text-white transition-colors ${disabled
+                                ? "bg-gray-400 dark:bg-gray-600 cursor-not-allowed"
+                                : "bg-red-600 hover:bg-red-700"
+                              }`}
                           >
                             Reject
                           </button>
