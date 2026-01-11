@@ -7,7 +7,8 @@ import { useForm } from "react-hook-form";
 import { imageUpload, saveOrUpdateUser } from "../../utils";
 
 const SignUp = () => {
-  const { createUser, updateUserProfile, signInWithGoogle, loading } = useAuth();
+  const { createUser, updateUserProfile, signInWithGoogle, loading } =
+    useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state || "/";
@@ -63,58 +64,87 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-[#FFF8F0] p-4">
-      <div className="w-full max-w-md bg-white rounded-3xl shadow-xl p-6 sm:p-8 flex flex-col">
+    <div className="flex justify-center items-center min-h-screen bg-[#FFF8F0] dark:bg-gray-900 p-4">
+      <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-6 sm:p-8 flex flex-col">
         <div className="text-center mb-6">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Sign Up</h1>
-          <p className="text-gray-500">Create your LocalChefBazaar account</p>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+            Sign Up
+          </h1>
+          <p className="text-gray-500 dark:text-gray-400">
+            Create your LocalChefBazaar account
+          </p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Name */}
           <div className="flex flex-col">
-            <label className="text-gray-700 mb-1">Name</label>
+            <label className="text-gray-700 dark:text-gray-300 mb-1">
+              Name
+            </label>
             <input
               type="text"
               placeholder="Your Name"
-              className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-lime-400 focus:outline-none bg-[#FFF8F0]"
-              {...register("name", { required: "Name is required", maxLength: 20 })}
+              className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-lime-400 focus:outline-none bg-[#FFF8F0] dark:bg-gray-700 dark:text-gray-200"
+              {...register("name", {
+                required: "Name is required",
+                maxLength: 20,
+              })}
             />
-            {errors.name && <span className="text-xs text-red-500 mt-1">{errors.name.message}</span>}
+            {errors.name && (
+              <span className="text-xs text-red-500 mt-1">
+                {errors.name.message}
+              </span>
+            )}
           </div>
 
           {/* Address */}
           <div className="flex flex-col">
-            <label className="text-gray-700 mb-1">Address</label>
+            <label className="text-gray-700 dark:text-gray-300 mb-1">
+              Address
+            </label>
             <input
               type="text"
               placeholder="Your Address"
-              className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-lime-400 bg-[#FFF8F0]"
+              className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-lime-400 bg-[#FFF8F0] dark:bg-gray-700 dark:text-gray-200"
               {...register("address", { required: "Address is required" })}
             />
-            {errors.address && <span className="text-xs text-red-500 mt-1">{errors.address.message}</span>}
+            {errors.address && (
+              <span className="text-xs text-red-500 mt-1">
+                {errors.address.message}
+              </span>
+            )}
           </div>
 
           {/* Profile Image */}
           <div className="flex flex-col">
-            <label className="text-gray-700 mb-1">Profile Image</label>
+            <label className="text-gray-700 dark:text-gray-300 mb-1">
+              Profile Image
+            </label>
             <input
               type="file"
               accept="image/*"
-              className="cursor-pointer px-4 py-2 rounded-lg border-2 border-dashed border-lime-300 bg-[#FFF8F0] focus:outline-none focus:ring-2 focus:ring-lime-400"
+              className="cursor-pointer px-4 py-2 rounded-lg border-2 border-dashed border-lime-300 dark:border-lime-600 bg-[#FFF8F0] dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-lime-400 dark:text-gray-200"
               {...register("image", { required: "Profile image is required" })}
             />
-            {errors.image && <span className="text-xs text-red-500 mt-1">{errors.image.message}</span>}
-            <p className="text-xs text-gray-400 mt-1">PNG, JPG or JPEG (max 2MB)</p>
+            {errors.image && (
+              <span className="text-xs text-red-500 mt-1">
+                {errors.image.message}
+              </span>
+            )}
+            <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
+              PNG, JPG or JPEG (max 2MB)
+            </p>
           </div>
 
           {/* Email */}
           <div className="flex flex-col">
-            <label className="text-gray-700 mb-1">Email</label>
+            <label className="text-gray-700 dark:text-gray-300 mb-1">
+              Email
+            </label>
             <input
               type="email"
               placeholder="Your Email"
-              className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-lime-400 bg-[#FFF8F0]"
+              className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-lime-400 bg-[#FFF8F0] dark:bg-gray-700 dark:text-gray-200"
               {...register("email", {
                 required: "Email is required",
                 pattern: {
@@ -123,35 +153,55 @@ const SignUp = () => {
                 },
               })}
             />
-            {errors.email && <span className="text-xs text-red-500 mt-1">{errors.email.message}</span>}
+            {errors.email && (
+              <span className="text-xs text-red-500 mt-1">
+                {errors.email.message}
+              </span>
+            )}
           </div>
 
           {/* Password */}
           <div className="flex flex-col">
-            <label className="text-gray-700 mb-1">Password</label>
+            <label className="text-gray-700 dark:text-gray-300 mb-1">
+              Password
+            </label>
             <input
               type="password"
               placeholder="******"
               autoComplete="new-password"
-              className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2  bg-[#FFF8F0]"
-              {...register("password", { required: "Password is required", minLength: 6 })}
+              className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-lime-400 bg-[#FFF8F0] dark:bg-gray-700 dark:text-gray-200"
+              {...register("password", {
+                required: "Password is required",
+                minLength: 6,
+              })}
             />
-            {errors.password && <span className="text-xs text-red-500 mt-1">{errors.password.message}</span>}
+            {errors.password && (
+              <span className="text-xs text-red-500 mt-1">
+                {errors.password.message}
+              </span>
+            )}
           </div>
 
           {/* Confirm Password */}
           <div className="flex flex-col">
-            <label className="text-gray-700 mb-1">Confirm Password</label>
+            <label className="text-gray-700 dark:text-gray-300 mb-1">
+              Confirm Password
+            </label>
             <input
               type="password"
               placeholder="******"
-              className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2  bg-[#FFF8F0]"
+              className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-lime-400 bg-[#FFF8F0] dark:bg-gray-700 dark:text-gray-200"
               {...register("confirmPassword", {
                 required: "Confirm password is required",
-                validate: (value) => value === watch("password") || "Passwords do not match",
+                validate: (value) =>
+                  value === watch("password") || "Passwords do not match",
               })}
             />
-            {errors.confirmPassword && <span className="text-xs text-red-500 mt-1">{errors.confirmPassword.message}</span>}
+            {errors.confirmPassword && (
+              <span className="text-xs text-red-500 mt-1">
+                {errors.confirmPassword.message}
+              </span>
+            )}
           </div>
 
           <button
@@ -164,23 +214,30 @@ const SignUp = () => {
 
         {/* Divider */}
         <div className="flex items-center my-5">
-          <hr className="flex-1 border-gray-300" />
-          <span className="px-3 text-gray-400 text-sm">OR</span>
-          <hr className="flex-1 border-gray-300" />
+          <hr className="flex-1 border-gray-300 dark:border-gray-600" />
+          <span className="px-3 text-gray-400 dark:text-gray-500 text-sm">
+            OR
+          </span>
+          <hr className="flex-1 border-gray-300 dark:border-gray-600" />
         </div>
 
         {/* Google Sign In */}
         <div
           onClick={handleGoogleSignIn}
-          className="flex items-center justify-center space-x-3 border border-gray-300 py-2 rounded-lg cursor-pointer hover:bg-[#FFF8F0] transition"
+          className="flex items-center justify-center space-x-3 border border-gray-300 dark:border-gray-600 py-2 rounded-lg cursor-pointer hover:bg-[#FFF8F0] dark:hover:bg-gray-700 transition"
         >
           <FcGoogle size={28} />
-          <span className="font-medium text-gray-700">Continue with Google</span>
+          <span className="font-medium text-gray-700 dark:text-gray-300">
+            Continue with Google
+          </span>
         </div>
 
-        <p className="text-center text-gray-400 text-sm mt-4">
+        <p className="text-center text-gray-400 dark:text-gray-500 text-sm mt-4">
           Already have an account?{" "}
-          <Link to="/login" className="text-[#FF6B35] font-medium hover:underline">
+          <Link
+            to="/login"
+            className="text-[#FF6B35] font-medium hover:underline"
+          >
             Login
           </Link>
         </p>

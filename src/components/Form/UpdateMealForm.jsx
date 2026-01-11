@@ -1,16 +1,19 @@
 const UpdateMealForm = () => {
   return (
-    <div className="w-full flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50">
+    <div className="w-full flex flex-col justify-center items-center text-gray-800 dark:text-gray-200 rounded-xl bg-gray-50 dark:bg-gray-800">
       <form>
         <div className="grid grid-cols-1 gap-10">
           <div className="space-y-6">
             {/* Name */}
             <div className="space-y-1 text-sm">
-              <label htmlFor="name" className="block text-gray-600">
+              <label
+                htmlFor="name"
+                className="block text-gray-600 dark:text-gray-400"
+              >
                 Name
               </label>
               <input
-                className="w-full px-4 py-3 text-gray-800 border border-lime-300 focus:outline-lime-500 rounded-md bg-white"
+                className="w-full px-4 py-3 text-gray-800 dark:text-gray-200 border border-lime-300 dark:border-lime-600 focus:outline-lime-500 rounded-md bg-white dark:bg-gray-700"
                 name="name"
                 id="name"
                 type="text"
@@ -43,7 +46,7 @@ const UpdateMealForm = () => {
               <textarea
                 id="description"
                 placeholder="Write plant description here..."
-                className="block rounded-md focus:lime-300 w-full h-32 px-4 py-3 text-gray-800  border border-lime-300 bg-white focus:outline-lime-500 "
+                className="block rounded-md focus:lime-300 w-full h-32 px-4 py-3 text-gray-800 dark:text-gray-200 border border-lime-300 dark:border-lime-600 bg-white dark:bg-gray-700 focus:outline-lime-500 "
                 name="description"
               ></textarea>
             </div>
@@ -53,11 +56,14 @@ const UpdateMealForm = () => {
             <div className="flex justify-between gap-2">
               {/* Price */}
               <div className="space-y-1 text-sm">
-                <label htmlFor="price" className="block text-gray-600 ">
+                <label
+                  htmlFor="price"
+                  className="block text-gray-600 dark:text-gray-400"
+                >
                   Price
                 </label>
                 <input
-                  className="w-full px-4 py-3 text-gray-800 border border-lime-300 focus:outline-lime-500 rounded-md bg-white"
+                  className="w-full px-4 py-3 text-gray-800 dark:text-gray-200 border border-lime-300 dark:border-lime-600 focus:outline-lime-500 rounded-md bg-white dark:bg-gray-700"
                   name="price"
                   id="price"
                   type="number"
@@ -68,11 +74,14 @@ const UpdateMealForm = () => {
 
               {/* Quantity */}
               <div className="space-y-1 text-sm">
-                <label htmlFor="quantity" className="block text-gray-600">
+                <label
+                  htmlFor="quantity"
+                  className="block text-gray-600 dark:text-gray-400"
+                >
                   Quantity
                 </label>
                 <input
-                  className="w-full px-4 py-3 text-gray-800 border border-lime-300 focus:outline-lime-500 rounded-md bg-white"
+                  className="w-full px-4 py-3 text-gray-800 dark:text-gray-200 border border-lime-300 dark:border-lime-600 focus:outline-lime-500 rounded-md bg-white dark:bg-gray-700"
                   name="quantity"
                   id="quantity"
                   type="number"

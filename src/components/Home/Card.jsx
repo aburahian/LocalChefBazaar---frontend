@@ -24,7 +24,7 @@ const Card = ({ meal }) => {
   };
 
   return (
-    <div className="flex flex-col justify-between h-full bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden group">
+    <div className="flex flex-col justify-between h-full bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 overflow-hidden group">
       {/* Image */}
       <div className="relative aspect-square w-full overflow-hidden">
         <img
@@ -32,7 +32,7 @@ const Card = ({ meal }) => {
           className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500 ease-out"
           alt="Meal"
         />
-        <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-semibold text-gray-800 shadow-sm">
+        <div className="absolute top-3 right-3 bg-white/90 dark:bg-gray-700/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-semibold text-gray-800 dark:text-gray-200 shadow-sm">
           ⭐ {rating}
         </div>
       </div>
@@ -41,19 +41,24 @@ const Card = ({ meal }) => {
       <div className="p-5 flex flex-col grow">
         <div className="grow space-y-2">
           <div className="flex justify-between items-start">
-            <h2 className="font-bold text-lg text-gray-800 line-clamp-2 leading-tight group-hover:text-primary transition-colors">
+            <h2 className="font-bold text-lg text-gray-800 dark:text-gray-200 line-clamp-2 leading-tight group-hover:text-primary transition-colors">
               {foodName}
             </h2>
-            <span className="text-lg font-bold text-primary shrink-0">${price}</span>
+            <span className="text-lg font-bold text-primary shrink-0">
+              ${price}
+            </span>
           </div>
 
-          <div className="text-sm text-gray-500 space-y-1 pt-2">
+          <div className="text-sm text-gray-500 dark:text-gray-400 space-y-1 pt-2">
             <p className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-gray-400"></span>
-              By <span className="font-medium text-gray-700">{chefName}</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-gray-500"></span>
+              By{" "}
+              <span className="font-medium text-gray-700 dark:text-gray-300">
+                {chefName}
+              </span>
             </p>
             <p className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-gray-400"></span>
+              <span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-gray-500"></span>
               Area: {delivery_area}
             </p>
           </div>

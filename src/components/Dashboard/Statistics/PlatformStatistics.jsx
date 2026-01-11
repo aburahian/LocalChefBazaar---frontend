@@ -24,14 +24,12 @@ const PlatformStatistics = () => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["platformStats"],
     queryFn: async () => {
-      const res = await axiosSecure.get(
-        `/stats`
-      );
+      const res = await axiosSecure.get(`/stats`);
       return res.data;
     },
   });
 
-  if (isLoading) return <LoadingSpinner/>;
+  if (isLoading) return <LoadingSpinner />;
   if (error) return <p>Error fetching statistics</p>;
 
   const barData = [
@@ -48,33 +46,53 @@ const PlatformStatistics = () => {
 
   return (
     <div className="p-6 space-y-6">
-      <h1 className="text-3xl font-bold mb-6">Platform Statistics</h1>
+      <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">
+        Platform Statistics
+      </h1>
 
       {/* Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white rounded-lg shadow p-6 text-center">
-          <h2 className="text-lg font-medium">Total Payments</h2>
-          <p className="text-2xl font-bold">${data.totalPaymentAmount}</p>
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 text-center">
+          <h2 className="text-lg font-medium text-gray-600 dark:text-gray-400">
+            Total Payments
+          </h2>
+          <p className="text-2xl font-bold text-gray-800 dark:text-gray-200">
+            ${data.totalPaymentAmount}
+          </p>
         </div>
-        <div className="bg-white rounded-lg shadow p-6 text-center">
-          <h2 className="text-lg font-medium">Total Users</h2>
-          <p className="text-2xl font-bold">{data.totalUsers}</p>
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 text-center">
+          <h2 className="text-lg font-medium text-gray-600 dark:text-gray-400">
+            Total Users
+          </h2>
+          <p className="text-2xl font-bold text-gray-800 dark:text-gray-200">
+            {data.totalUsers}
+          </p>
         </div>
-        <div className="bg-white rounded-lg shadow p-6 text-center">
-          <h2 className="text-lg font-medium">Orders Pending</h2>
-          <p className="text-2xl font-bold">{data.ordersPending}</p>
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 text-center">
+          <h2 className="text-lg font-medium text-gray-600 dark:text-gray-400">
+            Orders Pending
+          </h2>
+          <p className="text-2xl font-bold text-gray-800 dark:text-gray-200">
+            {data.ordersPending}
+          </p>
         </div>
-        <div className="bg-white rounded-lg shadow p-6 text-center">
-          <h2 className="text-lg font-medium">Orders Delivered</h2>
-          <p className="text-2xl font-bold">{data.ordersDelivered}</p>
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 text-center">
+          <h2 className="text-lg font-medium text-gray-600 dark:text-gray-400">
+            Orders Delivered
+          </h2>
+          <p className="text-2xl font-bold text-gray-800 dark:text-gray-200">
+            {data.ordersDelivered}
+          </p>
         </div>
       </div>
 
       {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Bar Chart */}
-        <div className="bg-white rounded-lg shadow p-6">
-          <h2 className="text-xl font-bold mb-4">All Metrics Overview</h2>
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 className="text-xl font-bold mb-4 text-gray-800 dark:text-gray-200">
+            All Metrics Overview
+          </h2>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={barData}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -88,8 +106,10 @@ const PlatformStatistics = () => {
         </div>
 
         {/* Pie Chart */}
-        <div className="bg-white rounded-lg shadow p-6">
-          <h2 className="text-xl font-bold mb-4">Orders Status</h2>
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h2 className="text-xl font-bold mb-4 text-gray-800 dark:text-gray-200">
+            Orders Status
+          </h2>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie

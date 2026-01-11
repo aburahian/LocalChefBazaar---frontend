@@ -1,24 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&display=swap");
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: [ "light", "dark"];
+}
+
+@variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 :root {
-  --color-primary: #FF6B35;
-  --color-secondary: #004E89;
-  --color-accent: #EF2D56;
-  --color-bg: #F9FAFB;
-  --font-heading: 'Outfit', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --color-primary: #ff6b35;
+  --color-secondary: #004e89;
+  --color-accent: #ef2d56;
+  --color-bg: #f9fafb;
+  --font-heading: "Outfit", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+[data-theme="dark"] {
+  --color-bg: #1f2937;
+  --color-text: #f9fafb;
 }
 
 body {
   font-family: var(--font-body);
   background: var(--color-bg);
-  color: #1F2937;
+  color: #1f2937;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
+[data-theme="dark"] body {
+  color: var(--color-text);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
 }

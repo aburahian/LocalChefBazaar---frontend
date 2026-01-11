@@ -61,42 +61,56 @@ const Login = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-[#FFF8F0] p-4">
-      <div className="flex flex-col max-w-md p-6 rounded-3xl sm:p-10 bg-white shadow-lg">
+      <div className="flex flex-col max-w-md p-6 rounded-3xl sm:p-10 bg-white dark:bg-gray-800 shadow-lg">
         <div className="mb-8 text-center">
-          <h1 className="my-3 text-4xl font-bold text-gray-900">Log In</h1>
-          <p className="text-sm text-gray-500">Sign in to access your account</p>
+          <h1 className="my-3 text-4xl font-bold text-gray-900 dark:text-white">
+            Log In
+          </h1>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            Sign in to access your account
+          </p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <label htmlFor="email" className="block mb-2 text-sm text-gray-700">
+            <label
+              htmlFor="email"
+              className="block mb-2 text-sm text-gray-700 dark:text-gray-300"
+            >
               Email address
             </label>
             <input
               type="email"
               id="email"
               placeholder="Enter Your Email Here"
-              className="w-full px-3 py-2 border rounded-md border-gray-300 focus:ring-2 focus:ring-lime-400 focus:outline-none bg-[#FFF8F0] text-gray-900"
+              className="w-full px-3 py-2 border rounded-md border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-lime-400 focus:outline-none bg-[#FFF8F0] dark:bg-gray-700 text-gray-900 dark:text-gray-200"
               {...register("email", { required: "Email is required" })}
             />
             {errors.email && (
-              <span className="text-red-500 text-xs mt-1">{errors.email.message}</span>
+              <span className="text-red-500 text-xs mt-1">
+                {errors.email.message}
+              </span>
             )}
           </div>
 
           <div>
-            <label htmlFor="password" className="block mb-2 text-sm text-gray-700">
+            <label
+              htmlFor="password"
+              className="block mb-2 text-sm text-gray-700 dark:text-gray-300"
+            >
               Password
             </label>
             <input
               type="password"
               id="password"
               placeholder="*******"
-              className="w-full px-3 py-2 border rounded-md border-gray-300 focus:ring-2 focus:ring-lime-400 focus:outline-none bg-[#FFF8F0] text-gray-900"
+              className="w-full px-3 py-2 border rounded-md border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-lime-400 focus:outline-none bg-[#FFF8F0] dark:bg-gray-700 text-gray-900 dark:text-gray-200"
               {...register("password", { required: "Password is required" })}
             />
             {errors.password && (
-              <span className="text-red-500 text-xs mt-1">{errors.password.message}</span>
+              <span className="text-red-500 text-xs mt-1">
+                {errors.password.message}
+              </span>
             )}
           </div>
 
@@ -104,33 +118,53 @@ const Login = () => {
             type="submit"
             className="w-full bg-[#FF6B35] hover:bg-[#e85a2b] text-white py-3 rounded-lg font-semibold flex justify-center items-center"
           >
-            {loading ? <TbFidgetSpinner className="animate-spin" /> : "Continue"}
+            {loading ? (
+              <TbFidgetSpinner className="animate-spin" />
+            ) : (
+              "Continue"
+            )}
           </button>
         </form>
 
         <div className="mt-4 text-center">
-          <button className="text-xs text-gray-500 hover:text-[#FF6B35] underline">
+          <button
+            onClick={() => {
+              document.getElementById("email").value = "demo@example.com";
+              document.getElementById("password").value = "demo123";
+            }}
+            className="text-xs text-blue-500 hover:text-blue-700 underline mr-4"
+          >
+            Demo Login
+          </button>
+          <button className="text-xs text-gray-500 dark:text-gray-400 hover:text-[#FF6B35] underline">
             Forgot password?
           </button>
         </div>
 
         <div className="flex items-center my-4">
-          <hr className="flex-1 border-gray-300" />
-          <span className="px-3 text-gray-400 text-sm">OR</span>
-          <hr className="flex-1 border-gray-300" />
+          <hr className="flex-1 border-gray-300 dark:border-gray-600" />
+          <span className="px-3 text-gray-400 dark:text-gray-500 text-sm">
+            OR
+          </span>
+          <hr className="flex-1 border-gray-300 dark:border-gray-600" />
         </div>
 
         <div
           onClick={handleGoogleSignIn}
-          className="flex items-center justify-center space-x-2 border border-gray-300 py-2 rounded-lg cursor-pointer hover:bg-[#FFF8F0] transition"
+          className="flex items-center justify-center space-x-2 border border-gray-300 dark:border-gray-600 py-2 rounded-lg cursor-pointer hover:bg-[#FFF8F0] dark:hover:bg-gray-700 transition"
         >
           <FcGoogle size={28} />
-          <span className="font-medium text-gray-700">Continue with Google</span>
+          <span className="font-medium text-gray-700 dark:text-gray-300">
+            Continue with Google
+          </span>
         </div>
 
-        <p className="text-center text-gray-400 text-sm mt-4">
+        <p className="text-center text-gray-400 dark:text-gray-500 text-sm mt-4">
           Don&apos;t have an account yet?{" "}
-          <Link to="/signup" className="text-[#FF6B35] font-medium hover:underline">
+          <Link
+            to="/signup"
+            className="text-[#FF6B35] font-medium hover:underline"
+          >
             Sign up
           </Link>
         </p>

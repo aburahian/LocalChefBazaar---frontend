@@ -19,11 +19,12 @@ const ChefRequests = () => {
     },
   });
 
-
   if (isLoading) return <LoadingSpinner />;
   return (
     <div className="p-6 space-y-6">
-      <h1 className="text-3xl font-bold mb-6">Platform Statistics</h1>
+      <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">
+        Platform Statistics
+      </h1>
 
       <div className="container mx-auto px-4 sm:px-8">
         <div className="py-8">
@@ -34,14 +35,14 @@ const ChefRequests = () => {
                   <tr>
                     <th
                       scope="col"
-                      className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                      className="px-5 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 text-left text-sm uppercase font-normal"
                     >
                       Email
                     </th>
 
                     <th
                       scope="col"
-                      className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                      className="px-5 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 text-left text-sm uppercase font-normal"
                     >
                       Action
                     </th>

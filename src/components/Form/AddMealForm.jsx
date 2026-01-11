@@ -78,8 +78,10 @@ const AddMealForm = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto my-8 p-6 sm:p-8 bg-white rounded-2xl shadow-lg">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">Add New Meal</h2>
+    <div className="max-w-4xl mx-auto my-8 p-6 sm:p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg">
+      <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6">
+        Add New Meal
+      </h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* Food Name */}
         <div className="flex flex-col">

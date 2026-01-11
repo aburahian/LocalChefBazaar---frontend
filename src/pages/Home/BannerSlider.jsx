@@ -10,25 +10,29 @@ import { motion } from "framer-motion";
 const bannerData = [
   {
     id: 1,
-    image: "https://i.ibb.co.com/ccH0rs1X/delicious-food-delivery-top-view-23-2149182210.jpg",
+    image:
+      "https://i.ibb.co.com/ccH0rs1X/delicious-food-delivery-top-view-23-2149182210.jpg",
     title: "Delicious Meals Delivered",
     subtitle: "Fresh & Tasty Food Every Day",
   },
   {
     id: 2,
-    image: "https://i.ibb.co.com/wN8yf5N3/af5ed7e6-0d0f-4585-b30f-7df674f314c1.jpg",
+    image:
+      "https://i.ibb.co.com/wN8yf5N3/af5ed7e6-0d0f-4585-b30f-7df674f314c1.jpg",
     title: "Your Favorite Dishes",
     subtitle: "Order Now & Enjoy",
   },
   {
     id: 3,
-    image: "https://i.ibb.co.com/mCynqNmH/66066981f2d884346df02cbc-deliver-packages-faster-HERO.webp",
+    image:
+      "https://i.ibb.co.com/mCynqNmH/66066981f2d884346df02cbc-deliver-packages-faster-HERO.webp",
     title: "Fast Delivery",
     subtitle: "Hot & Fresh at Your Doorstep",
   },
   {
     id: 4,
-    image: "https://i.ibb.co.com/qYxvCrdF/images-q-tbn-ANd9-Gc-TMq-Si-F73jv-VCGHWjuu9u-CYwj4-Wt-Tb-O8-LZIDw-s.jpg",
+    image:
+      "https://i.ibb.co.com/qYxvCrdF/images-q-tbn-ANd9-Gc-TMq-Si-F73jv-VCGHWjuu9u-CYwj4-Wt-Tb-O8-LZIDw-s.jpg",
     title: "Tasty Breakfasts",
     subtitle: "Start Your Day Right",
   },
@@ -52,13 +56,15 @@ const bannerData = [
   },
   {
     id: 8,
-    image: "https://i.ibb.co.com/7x2cWrj5/beat-the-heat-with-refreshing-summer-drink-ideas-852782.jpg",
+    image:
+      "https://i.ibb.co.com/7x2cWrj5/beat-the-heat-with-refreshing-summer-drink-ideas-852782.jpg",
     title: "Refreshing Drinks",
     subtitle: "Cool & Energizing",
   },
   {
     id: 9,
-    image: "https://i.ibb.co.com/YBhGNK4B/Recipes-2400-Pepperoni-Cup-Crips-Sweet-Spicy-Basil-Pep-Hot-Honey.jpg",
+    image:
+      "https://i.ibb.co.com/YBhGNK4B/Recipes-2400-Pepperoni-Cup-Crips-Sweet-Spicy-Basil-Pep-Hot-Honey.jpg",
     title: "Hot Pizzas",
     subtitle: "Cheesy & Delicious",
   },
@@ -92,7 +98,7 @@ const BannerSlider = () => {
         autoplay={{ delay: 4000, disableOnInteraction: false }}
         pagination={{ clickable: true, dynamicBullets: true }}
         navigation
-        className="w-full md:w-11/12 h-[400px] md:h-[450px] rounded-3xl overflow-hidden shadow-2xl"
+        className="w-full md:w-11/12 h-[60vh] md:h-[70vh] rounded-3xl overflow-hidden shadow-2xl"
       >
         {bannerData.map((banner) => (
           <SwiperSlide key={banner.id}>

@@ -2,31 +2,30 @@ import React, { useState } from "react";
 import axios from "axios";
 import Card from "../../components/Home/Card";
 import { useQuery } from "@tanstack/react-query";
-import LoadingSpinner from "../../components/Shared/LoadingSpinner";
+import CardSkeleton from "../../components/Shared/CardSkeleton";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
 const Meals = () => {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [sortBy, setSortBy] = useState("name");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 9;
+  const itemsPerPage = 8;
 
   const categories = ["all", "breakfast", "lunch", "dinner", "dessert"];
 
   const { data, isLoading } = useQuery({
-    queryKey: ["meals", currentPage, search, selectedCategory],
+    queryKey: ["meals", currentPage, search, selectedCategory, sortBy],
     queryFn: async () => {
-      const res = await axios.get(
-        `${import.meta.env.VITE_API_URL}/meals`,
-        {
-          params: {
-            page: currentPage,
-            limit: itemsPerPage,
-            search,
-            category: selectedCategory,
-          },
-        }
-      );
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/meals`, {
+        params: {
+          page: currentPage,
+          limit: itemsPerPage,
+          search,
+          category: selectedCategory,
+          sort: sortBy,
+        },
+      });
       return res.data;
     },
     keepPreviousData: true,
@@ -52,7 +51,16 @@ const Meals = () => {
     }
   };
 
-  if (isLoading) return <LoadingSpinner />;
+  if (isLoading)
+    return (
+      <div className="p-6 min-h-screen max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+          {[...Array(8)].map((_, index) => (
+            <CardSkeleton key={index} />
+          ))}
+        </div>
+      </div>
+    );
 
   return (
     <div className="p-6 min-h-screen max-w-7xl mx-auto">
@@ -61,7 +69,7 @@ const Meals = () => {
         <select
           value={selectedCategory}
           onChange={(e) => handleCategoryChange(e.target.value)}
-          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-primary/20"
+          className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20"
         >
           {categories.map((cat) => (
             <option key={cat} value={cat}>
@@ -75,14 +83,14 @@ const Meals = () => {
           placeholder="Search meals..."
           value={search}
           onChange={handleSearchChange}
-          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20"
+          className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20"
         />
       </div>
 
       <div className="flex flex-col md:flex-row gap-6">
         {/* Desktop Sidebar */}
-        <aside className="hidden md:block w-1/4 bg-white p-6 rounded-2xl shadow-sm h-fit sticky top-24 border border-gray-100">
-          <h2 className="font-bold text-xl mb-6 text-gray-800">
+        <aside className="hidden md:block w-1/4 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm h-fit sticky top-24 border border-gray-100 dark:border-gray-700">
+          <h2 className="font-bold text-xl mb-6 text-gray-800 dark:text-gray-200">
             Categories
           </h2>
 
@@ -91,11 +99,10 @@ const Meals = () => {
               <li
                 key={cat}
                 onClick={() => handleCategoryChange(cat)}
-                className={`cursor-pointer px-4 py-3 rounded-xl transition-all font-medium ${
-                  selectedCategory === cat
-                    ? "bg-primary text-white shadow-md"
-                    : "hover:bg-gray-100 text-gray-600"
-                }`}
+                className={`cursor-pointer px-4 py-3 rounded-xl transition-all font-medium ${selectedCategory === cat
+                  ? "bg-primary text-white shadow-md"
+                  : "hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300"
+                  }`}
               >
                 {cat.charAt(0).toUpperCase() + cat.slice(1)}
               </li>
@@ -103,7 +110,21 @@ const Meals = () => {
           </ul>
 
           <div className="mt-8">
-            <h2 className="font-bold text-xl mb-4 text-gray-800">
+            <h2 className="font-bold text-xl mb-4 text-gray-800 dark:text-gray-200">
+              Sort By
+            </h2>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white dark:bg-gray-700 dark:text-gray-200 mb-6"
+            >
+              <option value="name">Name (A-Z)</option>
+              <option value="price-low">Price (Low to High)</option>
+              <option value="price-high">Price (High to Low)</option>
+              <option value="rating">Rating</option>
+            </select>
+
+            <h2 className="font-bold text-xl mb-4 text-gray-800 dark:text-gray-200">
               Search
             </h2>
             <input
@@ -111,24 +132,22 @@ const Meals = () => {
               placeholder="Search meals..."
               value={search}
               onChange={handleSearchChange}
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
+              className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white dark:bg-gray-700 dark:text-gray-200"
             />
           </div>
         </aside>
 
         {/* Meals Grid */}
         <main className="flex-1 flex flex-col">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
             {meals.length > 0 ? (
-              meals.map((meal) => (
-                <Card key={meal._id} meal={meal} />
-              ))
+              meals.map((meal) => <Card key={meal._id} meal={meal} />)
             ) : (
               <div className="col-span-full text-center py-20">
-                <p className="text-xl font-semibold text-gray-600">
+                <p className="text-xl font-semibold text-gray-600 dark:text-gray-400">
                   No meals found
                 </p>
-                <p className="text-gray-400 mt-2">
+                <p className="text-gray-400 dark:text-gray-500 mt-2">
                   Try another category or keyword
                 </p>
               </div>
@@ -141,19 +160,19 @@ const Meals = () => {
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="p-3 rounded-full bg-white border border-gray-200 disabled:opacity-50"
+                className="p-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 disabled:opacity-50 hover:bg-gray-50 dark:hover:bg-gray-700"
               >
                 <AiOutlineLeft />
               </button>
 
-              <span className="font-medium text-gray-700">
+              <span className="font-medium text-gray-700 dark:text-gray-300">
                 Page {currentPage} of {totalPages}
               </span>
 
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="p-3 rounded-full bg-white border border-gray-200 disabled:opacity-50"
+                className="p-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 disabled:opacity-50 hover:bg-gray-50 dark:hover:bg-gray-700"
               >
                 <AiOutlineRight />
               </button>
